@@ -3,6 +3,8 @@ This CPAP muffler/silencer can be used to dramatically reduce the noise travelli
 
 **NOTE:** This is compatible with standard rubber hose connectors (default 22mm, but it is customizable). If using the Resmed Airmini, or other travel CPAPs with non-standard hose connectors, an adapter will need to be used.
 
+![All sizes of the printed parts](images/v1-all-small.jpg)
+
 ## Introduction
 While using my travel CPAP (a Breas Z1 Auto) for treating my sleep apnea, the noise travelling up the hose have been bothering me. I have tested a couple of mufflers on the market, like the Breas Q-Tube and Breas Q-Lite, but have not been satisfied with the sound reduction, so I have been requiring ear-plugs. This design is fully customizable, but I have included 3 sizes which will be enough for most people, small (70mm long, small volume), medium (85mm, bigger volume) and large (100 mm, very big volume). I recommend the large variant for most people, but even the small design is quieter than the Breas Q-Tube/Q-Lite, so feel free to try them all out. Using these designs, I no longer have a need for ear plugs!
 
