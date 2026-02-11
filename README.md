@@ -31,16 +31,22 @@ After printing, make sure to test that the muffler is completely air-tight befor
 ## Model parameters:
 
 ### Large (the default):
+```
 Muffler_Length = 100;
 Chamber_Thickness = 15;
 End_Cap_Grip_Cutout_Diameter = 3;
+```
 
 ### Medium:
+```
 Muffler_Length = 85;
 Chamber_Thickness = 12;
 End_Cap_Grip_Cutout_Diameter = 2.5;
+```
 
 ### Small:
+```
 Muffler_Length = 70;
 Chamber_Thickness = 9;
 End_Cap_Grip_Cutout_Diameter = 2.5;
+```
