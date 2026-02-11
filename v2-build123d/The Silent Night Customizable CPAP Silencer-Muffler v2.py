@@ -1,5 +1,6 @@
 # %% Imports
 from build123d import *
+from math import pi, tan, radians
 from ocp_vscode import *
 from bd_warehouse.thread import IsoThread
 
@@ -302,8 +303,10 @@ def inner_mesh_tube(muffler_length):
     top_ring = Pos(0,0,inner_tube_length-inner_tube_mesh_thickness) * bottom_ring
 
     # Mesh
-    clockwise_helix = Helix(inner_tube_length, inner_tube_length, connector_male_inner_diameter/2)
-    anticlockwise_helix = Helix(inner_tube_length, inner_tube_length, connector_male_inner_diameter/2, lefthand=True)
+    ring_circumference = pi*connector_male_outer_diameter
+    pitch = tan(radians(90-inner_tube_mesh_twist_angle))*ring_circumference
+    clockwise_helix = Helix(pitch, inner_tube_length, connector_male_inner_diameter/2)
+    anticlockwise_helix = Helix(pitch, inner_tube_length, connector_male_inner_diameter/2, lefthand=True)
     mesh_profile = Rectangle(inner_tube_mesh_thickness, inner_tube_mesh_thickness, align=(Align.MIN, Align.CENTER))
     clockwise = sweep(Pos(connector_male_inner_diameter/2,0,0) * mesh_profile, clockwise_helix, is_frenet=True)
     anticlockwise = sweep(Pos(connector_male_inner_diameter/2,0,0) * mesh_profile, anticlockwise_helix, is_frenet=True)
@@ -318,6 +321,9 @@ def inner_mesh_tube(muffler_length):
         solids.append(antistrand)
 
     return Compound(solids)
+
+#inner_mesh_tube_medium = inner_mesh_tube(muffler_length_medium)
+#show(inner_mesh_tube_medium)
 
 # %% Exports
 
@@ -350,6 +356,7 @@ show(inner_mesh_tube_medium)
 #export_stl(test_body_male_medium, "test_body_male_medium.stl")
 #export_stl(test_end_cap_base_large_2_5, "test_end_cap_base_large_2_5.stl")
 #export_stl(female_connector_test, "test_female_2_5.stl")
+
 export_stl(inner_mesh_tube_medium, "inner_mesh_tube_medium.stl")
 
 # %%
