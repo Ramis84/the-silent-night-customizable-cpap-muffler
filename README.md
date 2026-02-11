@@ -1,4 +1,4 @@
-# The "Silent Night Customizable CPAP Muffler
+# The "Silent Night" Customizable CPAP Muffler
 This CPAP muffler/silencer can be used to dramatically reduce the noise travelling up the hose to the mask.
 
 **NOTE:** This is compatible with standard rubber hose connectors (default 22mm, but it is customizable). If using the Resmed Airmini, or other travel CPAPs with non-standard hose connectors, an adapter will need to be used.
