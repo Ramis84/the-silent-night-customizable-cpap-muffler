@@ -108,6 +108,43 @@ connector_male_inner_diameter = CONNECTOR_MALE_OUTER_DIAMETER - 2*CONNECTOR_MALE
 inner_tube_diameter = connector_male_inner_diameter+2*INNER_TUBE_MESH_THICKNESS
 threading_height = 5*0.8660*THREADING_PITCH/8 # Height of thread ISO standard, https://en.wikipedia.org/wiki/ISO_metric_screw_thread
 
+# %% Threadings (pre-generating for performance)
+
+threading_body_small = IsoThread(major_diameter=MufflerORingInnerDiameter.SMALL+0.01, pitch=THREADING_PITCH, length=END_CAP_INSERT_LENGTH+1, end_finishes=("fade","fade"), external=False)
+threading_body_medium = IsoThread(major_diameter=MufflerORingInnerDiameter.MEDIUM+0.01, pitch=THREADING_PITCH, length=END_CAP_INSERT_LENGTH+1, end_finishes=("fade","fade"), external=False)
+threading_body_large = IsoThread(major_diameter=MufflerORingInnerDiameter.LARGE+0.01, pitch=THREADING_PITCH, length=END_CAP_INSERT_LENGTH+1, end_finishes=("fade","fade"), external=False)
+threading_end_cap_small = IsoThread(major_diameter=MufflerORingInnerDiameter.SMALL-2*TOLERANCE, pitch=THREADING_PITCH, length=END_CAP_INSERT_LENGTH, end_finishes=("fade","fade"), interference=0.0)
+threading_end_cap_medium = IsoThread(major_diameter=MufflerORingInnerDiameter.MEDIUM-2*TOLERANCE, pitch=THREADING_PITCH, length=END_CAP_INSERT_LENGTH, end_finishes=("fade","fade"), interference=0.0)
+threading_end_cap_large = IsoThread(major_diameter=MufflerORingInnerDiameter.LARGE-2*TOLERANCE, pitch=THREADING_PITCH, length=END_CAP_INSERT_LENGTH, end_finishes=("fade","fade"), interference=0.0)
+threading_end_cap_small_extra_spacing = IsoThread(major_diameter=MufflerORingInnerDiameter.SMALL-2*TOLERANCE-THREADING_EXTRA_SPACING, pitch=THREADING_PITCH, length=END_CAP_INSERT_LENGTH, end_finishes=("fade","fade"), interference=0.0)
+threading_end_cap_medium_extra_spacing = IsoThread(major_diameter=MufflerORingInnerDiameter.MEDIUM-2*TOLERANCE-THREADING_EXTRA_SPACING, pitch=THREADING_PITCH, length=END_CAP_INSERT_LENGTH, end_finishes=("fade","fade"), interference=0.0)
+threading_end_cap_large_extra_spacing = IsoThread(major_diameter=MufflerORingInnerDiameter.LARGE-2*TOLERANCE-THREADING_EXTRA_SPACING, pitch=THREADING_PITCH, length=END_CAP_INSERT_LENGTH, end_finishes=("fade","fade"), interference=0.0)
+
+def threading_body(muffler_o_ring_inner_diameter: MufflerORingInnerDiameter):
+    match muffler_o_ring_inner_diameter:
+        case MufflerORingInnerDiameter.SMALL:
+            return threading_body_small
+        case MufflerORingInnerDiameter.MEDIUM:
+            return threading_body_medium
+        case MufflerORingInnerDiameter.LARGE:
+            return threading_body_large
+        
+def threading_end_cap(muffler_o_ring_inner_diameter: MufflerORingInnerDiameter,
+                      threading_extra_spacing_enabled: bool):
+    match muffler_o_ring_inner_diameter:
+        case MufflerORingInnerDiameter.SMALL:
+            return (threading_end_cap_small_extra_spacing 
+                    if threading_extra_spacing_enabled 
+                    else threading_end_cap_small)
+        case MufflerORingInnerDiameter.MEDIUM:
+            return (threading_end_cap_medium_extra_spacing 
+                    if threading_extra_spacing_enabled 
+                    else threading_end_cap_medium)
+        case MufflerORingInnerDiameter.LARGE:
+            return (threading_end_cap_large_extra_spacing 
+                    if threading_extra_spacing_enabled 
+                    else threading_end_cap_large)
+
 # %% Male connector
 
 male_connector_wall_profile = Rectangle(CONNECTOR_MALE_WALL_THICKNESS, CONNECTOR_LENGTH, align=Align.MIN)
@@ -197,7 +234,7 @@ def body_grip_male(muffler_length: MufflerLength,
     # Internal threads
     part += (
         Pos(0,0,muffler_length-END_CAP_GRIP_THICKNESS-END_CAP_INSERT_LENGTH-1) 
-        * IsoThread(major_diameter=outer_tube_inner_diameter+0.01, pitch=THREADING_PITCH, length=END_CAP_INSERT_LENGTH+1, end_finishes=("fade","fade"), external=False)
+        * threading_body(muffler_o_ring_inner_diameter)
     )
     part -= extrude(male_connector_inside, END_CAP_BOTTOM_THICKNESS)
     return part
@@ -248,7 +285,6 @@ def end_cap_grip_base(muffler_o_ring_inner_diameter: MufflerORingInnerDiameter,
                       threading_extra_spacing_enabled: bool):
     outer_tube_inner_diameter = muffler_o_ring_inner_diameter
     outer_tube_outer_diameter = outer_tube_inner_diameter+2*BODY_WALL_THICKNESS
-    threading_extra_spacing = THREADING_EXTRA_SPACING if threading_extra_spacing_enabled else 0.0
     # Profile of whole end-cap, except threads & connector
     profile = end_cap_grip_profile(muffler_o_ring_inner_diameter, threading_extra_spacing_enabled)
     part = revolve(Plane.XZ * profile)
@@ -258,7 +294,7 @@ def end_cap_grip_base(muffler_o_ring_inner_diameter: MufflerORingInnerDiameter,
     # External threads
     part += (
         Pos(0,0,END_CAP_GRIP_THICKNESS) 
-        * IsoThread(major_diameter=outer_tube_inner_diameter-2*TOLERANCE-threading_extra_spacing, pitch=THREADING_PITCH, length=END_CAP_INSERT_LENGTH, end_finishes=("fade","fade"), interference=0.0)
+        * threading_end_cap(muffler_o_ring_inner_diameter, threading_extra_spacing_enabled)
     )
     return part
 
