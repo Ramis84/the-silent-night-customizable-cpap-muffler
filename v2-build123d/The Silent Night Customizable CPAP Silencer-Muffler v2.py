@@ -122,19 +122,19 @@ female_connector_inside = Circle(CONNECTOR_MALE_OUTER_DIAMETER/2 + TOLERANCE)
 
 # %% Female connector
 
-def female_connector_o_ring_slot(connector_female_o_ring_thickness):
+def female_connector_o_ring_slot(connector_female_o_ring_thickness: float):
     # Make slot big enough for, O-ring to expand
     profile = Polygon((connector_female_o_ring_thickness*2, 0), (0,-connector_female_o_ring_thickness/1.4), (0,connector_female_o_ring_thickness/1.4))
     profile = fillet(profile.vertices()[0], connector_female_o_ring_thickness/2)
     return profile
 
-def female_connector(connector_length, connector_corner_radius, connector_female_o_ring_thickness):
-    wall_profile = Rectangle(CONNECTOR_FEMALE_WALL_THICKNESS, connector_length, align=Align.MIN)
-    if connector_corner_radius > 0:
-        wall_profile = fillet(wall_profile.vertices()[2], connector_corner_radius)
+def female_connector(connector_female_o_ring_thickness: float):
+    wall_profile = Rectangle(CONNECTOR_FEMALE_WALL_THICKNESS, CONNECTOR_LENGTH, align=Align.MIN)
+    if CONNECTOR_CORNER_RADIUS > 0:
+        wall_profile = fillet(wall_profile.vertices()[2], CONNECTOR_CORNER_RADIUS)
     # O-ring inside connector
     wall_profile -= (
-        Pos(-(CONNECTOR_MALE_OUTER_DIAMETER-CONNECTOR_FEMALE_O_RING_INNER_DIAMETER)/2,connector_length/5) 
+        Pos(-(CONNECTOR_MALE_OUTER_DIAMETER-CONNECTOR_FEMALE_O_RING_INNER_DIAMETER)/2,CONNECTOR_LENGTH/5) 
         * female_connector_o_ring_slot(connector_female_o_ring_thickness)
     )
     part = revolve(
@@ -145,7 +145,7 @@ def female_connector(connector_length, connector_corner_radius, connector_female
 
 # %% Grip cutout
 
-def grip_cutout(outer_tube_outer_diameter):
+def grip_cutout(outer_tube_outer_diameter: float):
     grip_cutout_diameter = outer_tube_outer_diameter*GRIP_CUTOUT_DIAMETER_RATIO
     part = (
         PolarLocations(radius=(outer_tube_outer_diameter+grip_cutout_diameter)/2, count=END_CAP_GRIP_CUTOUT_COUNT)
@@ -155,7 +155,8 @@ def grip_cutout(outer_tube_outer_diameter):
 
 # %% Body grip 2D profile, to be revolved
 
-def body_grip_profile(muffler_length, muffler_o_ring_inner_diameter):
+def body_grip_profile(muffler_length: MufflerLength, 
+                      muffler_o_ring_inner_diameter: MufflerORingInnerDiameter):
     outer_tube_inner_diameter = muffler_o_ring_inner_diameter
     outer_tube_outer_diameter = outer_tube_inner_diameter+2*BODY_WALL_THICKNESS
     grip_cutout_diameter = outer_tube_outer_diameter*GRIP_CUTOUT_DIAMETER_RATIO
@@ -167,7 +168,7 @@ def body_grip_profile(muffler_length, muffler_o_ring_inner_diameter):
     # Inside of the body
     profile -= (
         Pos(0,END_CAP_BOTTOM_THICKNESS)
-        * Rectangle(outer_tube_inner_diameter/2,muffler_length, align=Align.MIN)
+        * Rectangle(outer_tube_inner_diameter/2, muffler_length, align=Align.MIN)
     )
     # Slot for inner mesh tube
     profile -= (
@@ -183,7 +184,8 @@ def body_grip_profile(muffler_length, muffler_o_ring_inner_diameter):
 
 # %% Body grip only, no connector
 
-def body_grip_male(muffler_length, muffler_o_ring_inner_diameter):
+def body_grip_male(muffler_length: MufflerLength, 
+                   muffler_o_ring_inner_diameter: MufflerORingInnerDiameter):
     outer_tube_inner_diameter = muffler_o_ring_inner_diameter
     outer_tube_outer_diameter = outer_tube_inner_diameter+2*BODY_WALL_THICKNESS
     # Profile of whole body, except threads & connector
@@ -202,7 +204,8 @@ def body_grip_male(muffler_length, muffler_o_ring_inner_diameter):
 
 # %% Male end cap, with connector
 
-def body_male(muffler_length, muffler_o_ring_inner_diameter):
+def body_male(muffler_length: MufflerLength, 
+              muffler_o_ring_inner_diameter: MufflerORingInnerDiameter):
     body = (
         Pos(0,0,CONNECTOR_LENGTH) 
         * body_grip_male(muffler_length, muffler_o_ring_inner_diameter)
@@ -211,7 +214,8 @@ def body_male(muffler_length, muffler_o_ring_inner_diameter):
 
 # %% End cap grip 2D profile, to be revolved
 
-def end_cap_grip_profile(muffler_o_ring_inner_diameter, threading_extra_spacing_enabled):
+def end_cap_grip_profile(muffler_o_ring_inner_diameter: MufflerORingInnerDiameter, 
+                         threading_extra_spacing_enabled: bool):
     outer_tube_inner_diameter = muffler_o_ring_inner_diameter
     outer_tube_outer_diameter = outer_tube_inner_diameter+2*BODY_WALL_THICKNESS
     grip_cutout_diameter = outer_tube_outer_diameter*GRIP_CUTOUT_DIAMETER_RATIO
@@ -240,7 +244,8 @@ def end_cap_grip_profile(muffler_o_ring_inner_diameter, threading_extra_spacing_
 
 # %% End cap grip used by both male & female versions, no connector
 
-def end_cap_grip_base(muffler_o_ring_inner_diameter, threading_extra_spacing_enabled):
+def end_cap_grip_base(muffler_o_ring_inner_diameter: MufflerORingInnerDiameter, 
+                      threading_extra_spacing_enabled: bool):
     outer_tube_inner_diameter = muffler_o_ring_inner_diameter
     outer_tube_outer_diameter = outer_tube_inner_diameter+2*BODY_WALL_THICKNESS
     threading_extra_spacing = THREADING_EXTRA_SPACING if threading_extra_spacing_enabled else 0.0
@@ -259,7 +264,8 @@ def end_cap_grip_base(muffler_o_ring_inner_diameter, threading_extra_spacing_ena
 
 # %% Male end cap grip
 
-def end_cap_grip_male(muffler_o_ring_inner_diameter, threading_extra_spacing_enabled):
+def end_cap_grip_male(muffler_o_ring_inner_diameter: MufflerORingInnerDiameter, 
+                      threading_extra_spacing_enabled: bool):
     part = (
         end_cap_grip_base(muffler_o_ring_inner_diameter, threading_extra_spacing_enabled) 
         - extrude(male_connector_inside, END_CAP_BOTTOM_THICKNESS)
@@ -268,7 +274,8 @@ def end_cap_grip_male(muffler_o_ring_inner_diameter, threading_extra_spacing_ena
 
 # %% Female end cap grip
 
-def end_cap_grip_female(muffler_o_ring_inner_diameter, threading_extra_spacing_enabled):
+def end_cap_grip_female(muffler_o_ring_inner_diameter: MufflerORingInnerDiameter, 
+                        threading_extra_spacing_enabled: bool):
     part = (
         end_cap_grip_base(muffler_o_ring_inner_diameter, threading_extra_spacing_enabled)
         # Taper the edge inwards between end cap and connector, since the inner mesh tube needs a ledge to sit on
@@ -280,7 +287,8 @@ def end_cap_grip_female(muffler_o_ring_inner_diameter, threading_extra_spacing_e
 
 # %% Male end cap, with connector
 
-def end_cap_male(muffler_o_ring_inner_diameter, threading_extra_spacing_enabled = False):
+def end_cap_male(muffler_o_ring_inner_diameter: MufflerORingInnerDiameter, 
+                 threading_extra_spacing_enabled: bool = False):
     part = male_connector + (
         Pos(0,0,CONNECTOR_LENGTH) 
         * end_cap_grip_male(muffler_o_ring_inner_diameter, threading_extra_spacing_enabled)
@@ -289,8 +297,10 @@ def end_cap_male(muffler_o_ring_inner_diameter, threading_extra_spacing_enabled 
 
 # %% Female end cap, with connector
 
-def end_cap_female(muffler_o_ring_inner_diameter, connector_female_o_ring_thickness, threading_extra_spacing_enabled = False):
-    part = female_connector(CONNECTOR_LENGTH, CONNECTOR_CORNER_RADIUS, connector_female_o_ring_thickness) + (
+def end_cap_female(muffler_o_ring_inner_diameter: MufflerORingInnerDiameter, 
+                   connector_female_o_ring_thickness: float, 
+                   threading_extra_spacing_enabled: bool = False):
+    part = female_connector(connector_female_o_ring_thickness) + (
         Pos(0,0,CONNECTOR_LENGTH) 
         * end_cap_grip_female(muffler_o_ring_inner_diameter, threading_extra_spacing_enabled)
     )
@@ -298,7 +308,8 @@ def end_cap_female(muffler_o_ring_inner_diameter, connector_female_o_ring_thickn
 
 # %% Inner mesh tube
 
-def inner_mesh_tube(muffler_length, includeCorkscrew):
+def inner_mesh_tube(muffler_length: MufflerLength, 
+                    includeCorkscrew: bool):
     inner_tube_length = muffler_length-2*END_CAP_BOTTOM_THICKNESS+2*END_CAP_INNER_TUBE_SLOT_DEPTH
     ring_profile = Rectangle(INNER_TUBE_MESH_THICKNESS, INNER_TUBE_MESH_THICKNESS, align=Align.MIN)
     # End rings
