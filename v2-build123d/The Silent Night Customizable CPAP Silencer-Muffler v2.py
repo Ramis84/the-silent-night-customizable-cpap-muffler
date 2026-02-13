@@ -2,7 +2,7 @@
 from build123d import *
 from math import pi, tan, radians
 from bd_warehouse.thread import IsoThread
-from ocp_vscode import *
+#from ocp_vscode import *
 
 # %% Config
 
@@ -363,6 +363,40 @@ inner_mesh_tube_medium = inner_mesh_tube(muffler_length_medium, False)
 inner_mesh_tube_medium_corkscrew = inner_mesh_tube(muffler_length_medium, True)
 inner_mesh_tube_large = inner_mesh_tube(muffler_length_large, False)
 inner_mesh_tube_large_corkscrew = inner_mesh_tube(muffler_length_large, True)
+
+# %% Preview 
+# (uncomment one object at a time to preview, import 'ocp_vscode' needs to be uncommented at the top of the file as well)
+
+#show(body_male_small)
+#show(body_male_medium)
+#show(body_male_large)
+
+#show(end_cap_male_small)
+#show(end_cap_male_small_extra_spacing)
+#show(end_cap_male_medium)
+#show(end_cap_male_medium_extra_spacing)
+#show(end_cap_male_large)
+#show(end_cap_male_large_extra_spacing)
+
+#show(end_cap_female_small_2_0)
+#show(end_cap_female_small_2_5)
+#show(end_cap_female_small_2_0_extra_spacing)
+#show(end_cap_female_small_2_5_extra_spacing)
+#show(end_cap_female_medium_2_0)
+#show(end_cap_female_medium_2_5)
+#show(end_cap_female_medium_2_0_extra_spacing)
+#show(end_cap_female_medium_2_5_extra_spacing)
+#show(end_cap_female_large_2_0)
+#show(end_cap_female_large_2_5)
+#show(end_cap_female_large_2_0_extra_spacing)
+#show(end_cap_female_large_2_5_extra_spacing)
+
+#show(inner_mesh_tube_small)
+#show(inner_mesh_tube_small_corkscrew)
+#show(inner_mesh_tube_medium)
+#show(inner_mesh_tube_medium_corkscrew)
+#show(inner_mesh_tube_large)
+#show(inner_mesh_tube_large_corkscrew)
 
 # %% Exports STL
 
