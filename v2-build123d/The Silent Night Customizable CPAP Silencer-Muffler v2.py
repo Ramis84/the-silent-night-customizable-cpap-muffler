@@ -260,8 +260,6 @@ def end_cap_grip_base(muffler_o_ring_inner_diameter, threading_extra_spacing):
     )
     return part
 
-show(end_cap_grip_base(muffler_o_ring_inner_diameter_large, 0))
-
 # %% Male end cap grip
 
 def end_cap_grip_male(muffler_o_ring_inner_diameter, threading_extra_spacing):
@@ -335,35 +333,101 @@ def inner_mesh_tube(muffler_length, includeCorkscrew):
 
 # %% Generate parts
 
+body_male_small = body_male(muffler_length_small, muffler_o_ring_inner_diameter_small)
+body_male_medium = body_male(muffler_length_medium, muffler_o_ring_inner_diameter_medium)
 body_male_large = body_male(muffler_length_large, muffler_o_ring_inner_diameter_large)
-body_male_large = body_male(muffler_length_large, muffler_o_ring_inner_diameter_large)
-body_male_large = body_male(muffler_length_large, muffler_o_ring_inner_diameter_large)
+
+end_cap_male_small = end_cap_male(muffler_o_ring_inner_diameter_small)
+end_cap_male_small_extra_spacing = end_cap_male(muffler_o_ring_inner_diameter_small, 0.2)
+end_cap_male_medium = end_cap_male(muffler_o_ring_inner_diameter_medium)
+end_cap_male_medium_extra_spacing = end_cap_male(muffler_o_ring_inner_diameter_medium, 0.2)
 end_cap_male_large = end_cap_male(muffler_o_ring_inner_diameter_large)
 end_cap_male_large_extra_spacing = end_cap_male(muffler_o_ring_inner_diameter_large, 0.2)
+
+end_cap_female_small_2_0 = end_cap_female(muffler_o_ring_inner_diameter_small, 2.0)
+end_cap_female_small_2_5 = end_cap_female(muffler_o_ring_inner_diameter_small, 2.5)
+end_cap_female_small_2_0_extra_spacing = end_cap_female(muffler_o_ring_inner_diameter_small, 2.0, 0.2)
+end_cap_female_small_2_5_extra_spacing = end_cap_female(muffler_o_ring_inner_diameter_small, 2.5, 0.2)
+end_cap_female_medium_2_0 = end_cap_female(muffler_o_ring_inner_diameter_medium, 2.0)
+end_cap_female_medium_2_5 = end_cap_female(muffler_o_ring_inner_diameter_medium, 2.5)
+end_cap_female_medium_2_0_extra_spacing = end_cap_female(muffler_o_ring_inner_diameter_medium, 2.0, 0.2)
+end_cap_female_medium_2_5_extra_spacing = end_cap_female(muffler_o_ring_inner_diameter_medium, 2.5, 0.2)
 end_cap_female_large_2_0 = end_cap_female(muffler_o_ring_inner_diameter_large, 2.0)
 end_cap_female_large_2_5 = end_cap_female(muffler_o_ring_inner_diameter_large, 2.5)
 end_cap_female_large_2_0_extra_spacing = end_cap_female(muffler_o_ring_inner_diameter_large, 2.0, 0.2)
 end_cap_female_large_2_5_extra_spacing = end_cap_female(muffler_o_ring_inner_diameter_large, 2.5, 0.2)
+
+inner_mesh_tube_small = inner_mesh_tube(muffler_length_small, False)
+inner_mesh_tube_small_corkscrew = inner_mesh_tube(muffler_length_small, True)
+inner_mesh_tube_medium = inner_mesh_tube(muffler_length_medium, False)
+inner_mesh_tube_medium_corkscrew = inner_mesh_tube(muffler_length_medium, True)
 inner_mesh_tube_large = inner_mesh_tube(muffler_length_large, False)
 inner_mesh_tube_large_corkscrew = inner_mesh_tube(muffler_length_large, True)
 
-# Debug
-#test_body_grip_male_small = body_grip_male(muffler_length_small, muffler_o_ring_inner_diameter_small)
-#test_end_cap_base_small_extra_spacing = end_cap_grip_male(muffler_o_ring_inner_diameter_small, 0.2)
-#test_body_grip_male_large = body_grip_male(muffler_length_large, muffler_o_ring_inner_diameter_large)
-#test_end_cap_base_large = end_cap_grip_male(muffler_o_ring_inner_diameter_large)
-#test_body_grip_male_medium = body_grip_male(muffler_length_medium, muffler_o_ring_inner_diameter_medium)
-#test_end_cap_base_medium_extra_spacing = end_cap_grip_male(muffler_o_ring_inner_diameter_medium, 0.2)
-#female_connector_test = female_connector(8, 0, 2.5)
-
-show(body_male_large)
-
 # %% Exports STL
 
+export_stl(body_male_small, "body_male_small.stl")
+export_stl(body_male_medium, "body_male_medium.stl")
 export_stl(body_male_large, "body_male_large.stl")
+
+export_stl(end_cap_male_small, "end_cap_male_small.stl")
+export_stl(end_cap_male_small_extra_spacing, "end_cap_male_small_extra_spacing.stl")
+export_stl(end_cap_male_medium, "end_cap_male_medium.stl")
+export_stl(end_cap_male_medium_extra_spacing, "end_cap_male_medium_extra_spacing.stl")
+export_stl(end_cap_male_large, "end_cap_male_large.stl")
+export_stl(end_cap_male_large_extra_spacing, "end_cap_male_large_extra_spacing.stl")
+
+export_stl(end_cap_female_small_2_0, "end_cap_female_small_2_0.stl")
+export_stl(end_cap_female_small_2_5, "end_cap_female_small_2_5.stl")
+export_stl(end_cap_female_small_2_0_extra_spacing, "end_cap_female_small_2_0_extra_spacing.stl")
+export_stl(end_cap_female_small_2_5_extra_spacing, "end_cap_female_small_2_5_extra_spacing.stl")
+export_stl(end_cap_female_medium_2_0, "end_cap_female_medium_2_0.stl")
+export_stl(end_cap_female_medium_2_5, "end_cap_female_medium_2_5.stl")
+export_stl(end_cap_female_medium_2_0_extra_spacing, "end_cap_female_medium_2_0_extra_spacing.stl")
+export_stl(end_cap_female_medium_2_5_extra_spacing, "end_cap_female_medium_2_5_extra_spacing.stl")
+export_stl(end_cap_female_large_2_0, "end_cap_female_large_2_0.stl")
+export_stl(end_cap_female_large_2_5, "end_cap_female_large_2_5.stl")
+export_stl(end_cap_female_large_2_0_extra_spacing, "end_cap_female_large_2_0_extra_spacing.stl")
+export_stl(end_cap_female_large_2_5_extra_spacing, "end_cap_female_large_2_5_extra_spacing.stl")
+
+export_stl(inner_mesh_tube_small, "inner_mesh_tube_small.stl")
+export_stl(inner_mesh_tube_small_corkscrew, "inner_mesh_tube_small_corkscrew.stl")
+export_stl(inner_mesh_tube_medium, "inner_mesh_tube_medium.stl")
+export_stl(inner_mesh_tube_medium_corkscrew, "inner_mesh_tube_medium_corkscrew.stl")
+export_stl(inner_mesh_tube_large, "inner_mesh_tube_large.stl")
+export_stl(inner_mesh_tube_large_corkscrew, "inner_mesh_tube_large_corkscrew.stl")
 
 # %% Exports STEP
 
+export_step(body_male_small, "body_male_small.step")
+export_step(body_male_medium, "body_male_medium.step")
 export_step(body_male_large, "body_male_large.step")
+
+export_step(end_cap_male_small, "end_cap_male_small.step")
+export_step(end_cap_male_small_extra_spacing, "end_cap_male_small_extra_spacing.step")
+export_step(end_cap_male_medium, "end_cap_male_medium.step")
+export_step(end_cap_male_medium_extra_spacing, "end_cap_male_medium_extra_spacing.step")
+export_step(end_cap_male_large, "end_cap_male_large.step")
+export_step(end_cap_male_large_extra_spacing, "end_cap_male_large_extra_spacing.step")
+
+export_step(end_cap_female_small_2_0, "end_cap_female_small_2_0.step")
+export_step(end_cap_female_small_2_5, "end_cap_female_small_2_5.step")
+export_step(end_cap_female_small_2_0_extra_spacing, "end_cap_female_small_2_0_extra_spacing.step")
+export_step(end_cap_female_small_2_5_extra_spacing, "end_cap_female_small_2_5_extra_spacing.step")
+export_step(end_cap_female_medium_2_0, "end_cap_female_medium_2_0.step")
+export_step(end_cap_female_medium_2_5, "end_cap_female_medium_2_5.step")
+export_step(end_cap_female_medium_2_0_extra_spacing, "end_cap_female_medium_2_0_extra_spacing.step")
+export_step(end_cap_female_medium_2_5_extra_spacing, "end_cap_female_medium_2_5_extra_spacing.step")
+export_step(end_cap_female_large_2_0, "end_cap_female_large_2_0.step")
+export_step(end_cap_female_large_2_5, "end_cap_female_large_2_5.step")
+export_step(end_cap_female_large_2_0_extra_spacing, "end_cap_female_large_2_0_extra_spacing.step")
+export_step(end_cap_female_large_2_5_extra_spacing, "end_cap_female_large_2_5_extra_spacing.step")
+
+export_step(inner_mesh_tube_small, "inner_mesh_tube_small.step")
+export_step(inner_mesh_tube_small_corkscrew, "inner_mesh_tube_small_corkscrew.step")
+export_step(inner_mesh_tube_medium, "inner_mesh_tube_medium.step")
+export_step(inner_mesh_tube_medium_corkscrew, "inner_mesh_tube_medium_corkscrew.step")
+export_step(inner_mesh_tube_large, "inner_mesh_tube_large.step")
+export_step(inner_mesh_tube_large_corkscrew, "inner_mesh_tube_large_corkscrew.step")
 
 # %%
