@@ -184,11 +184,11 @@ def female_connector(connector_female_o_ring_thickness: float):
 
 def grip_cutout(outer_tube_outer_diameter: float):
     grip_cutout_diameter = outer_tube_outer_diameter*GRIP_CUTOUT_DIAMETER_RATIO
-    part = (
+    circles = (
         PolarLocations(radius=(outer_tube_outer_diameter+grip_cutout_diameter)/2, count=END_CAP_GRIP_CUTOUT_COUNT)
-        * Cylinder(grip_cutout_diameter/2, END_CAP_GRIP_THICKNESS, align=(Align.CENTER,Align.MIN))
+        * Circle(grip_cutout_diameter/2, align=(Align.CENTER,Align.MIN))
     )
-    return part
+    return Compound(circles)
 
 # %% Body grip 2D profile, to be revolved
 
@@ -230,7 +230,7 @@ def body_grip_male(muffler_length: MufflerLength,
     part = revolve(Plane.XZ * profile)
     # Grip
     body_grip_cutout = grip_cutout(outer_tube_outer_diameter)
-    part -= body_grip_cutout
+    part -= extrude(body_grip_cutout, END_CAP_GRIP_THICKNESS)
     # Internal threads
     part += (
         Pos(0,0,muffler_length-END_CAP_GRIP_THICKNESS-END_CAP_INSERT_LENGTH-1) 
@@ -290,7 +290,7 @@ def end_cap_grip_base(muffler_o_ring_inner_diameter: MufflerORingInnerDiameter,
     part = revolve(Plane.XZ * profile)
     # Grip
     end_cap_grip_cutout = grip_cutout(outer_tube_outer_diameter)
-    part -= end_cap_grip_cutout
+    part -= extrude(end_cap_grip_cutout, END_CAP_GRIP_THICKNESS)
     # External threads
     part += (
         Pos(0,0,END_CAP_GRIP_THICKNESS) 
@@ -345,7 +345,7 @@ def end_cap_female(muffler_o_ring_inner_diameter: MufflerORingInnerDiameter,
 # %% Inner mesh tube
 
 def inner_mesh_tube(muffler_length: MufflerLength, 
-                    includeCorkscrew: bool):
+                    include_corkscrew: bool):
     inner_tube_length = muffler_length-2*END_CAP_BOTTOM_THICKNESS+2*END_CAP_INNER_TUBE_SLOT_DEPTH
     ring_profile = Rectangle(INNER_TUBE_MESH_THICKNESS, INNER_TUBE_MESH_THICKNESS, align=Align.MIN)
     # End rings
@@ -362,7 +362,7 @@ def inner_mesh_tube(muffler_length: MufflerLength,
     # Make a flat Compound of all the objects
     solids = [bottom_ring, top_ring]
     # Optional corkscrew
-    if includeCorkscrew:
+    if include_corkscrew:
         clockwise_helix = Helix(INNER_TUBE_SCREW_TWIST_TURNS*inner_tube_length, inner_tube_length, connector_male_inner_diameter/2)
         corkscrew_profile = Rectangle(connector_male_inner_diameter, INNER_TUBE_CORKSCREW_THICKNESS, align=Align.MAX)
         corkscrew = sweep(Pos(connector_male_inner_diameter/2,0,0) * corkscrew_profile, clockwise_helix, is_frenet=True)
