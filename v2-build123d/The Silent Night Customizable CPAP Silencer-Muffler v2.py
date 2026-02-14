@@ -111,7 +111,7 @@ threading_height = 5*0.8660*THREADING_PITCH/8 # Height of thread ISO standard, h
 # %% Threadings
 
 def threading_body(muffler_o_ring_inner_diameter: MufflerORingInnerDiameter):
-    return IsoThread(major_diameter=muffler_o_ring_inner_diameter+0.01, pitch=THREADING_PITCH, length=END_CAP_INSERT_LENGTH+1, end_finishes=("fade","fade"), external=False)
+    return IsoThread(major_diameter=muffler_o_ring_inner_diameter+0.01, pitch=THREADING_PITCH, length=END_CAP_INSERT_LENGTH+1, end_finishes=("fade","fade"), external=False, interference=0.0)
         
 def threading_end_cap(muffler_o_ring_inner_diameter: MufflerORingInnerDiameter,
                       threading_extra_spacing_enabled: bool):
@@ -221,11 +221,11 @@ def body_male(muffler_length: MufflerLength,
     body_grip_cutout = grip_cutout_profile(outer_tube_outer_diameter)
     part -= extrude(body_grip_cutout, CONNECTOR_LENGTH+muffler_length)
     # Internal threads
-    part += (
+    threading = (
         Pos(0,0,CONNECTOR_LENGTH+muffler_length-END_CAP_GRIP_THICKNESS-END_CAP_INSERT_LENGTH-1) 
         * threading_body(muffler_o_ring_inner_diameter)
     )
-    return part
+    return Compound([part, threading])
 
 # %% End cap insert
 
@@ -302,11 +302,11 @@ def end_cap_male(muffler_o_ring_inner_diameter: MufflerORingInnerDiameter,
     )
     part = revolve(Plane.XZ * profile)
     # External threads
-    part += (
+    threading = (
         Pos(0,0,CONNECTOR_LENGTH+END_CAP_GRIP_THICKNESS) 
         * threading_end_cap(muffler_o_ring_inner_diameter, threading_extra_spacing_enabled)
     )
-    return part
+    return Compound([part, threading])
 
 # %% Female end cap, with connector
 
@@ -320,11 +320,11 @@ def end_cap_female(muffler_o_ring_inner_diameter: MufflerORingInnerDiameter,
     )
     part = revolve(Plane.XZ * profile)
     # External threads
-    part += (
+    threading = (
         Pos(0,0,CONNECTOR_LENGTH+END_CAP_GRIP_THICKNESS) 
         * threading_end_cap(muffler_o_ring_inner_diameter, threading_extra_spacing_enabled)
     )
-    return part
+    return Compound([part, threading])
 
 # %% Inner mesh tube
 
