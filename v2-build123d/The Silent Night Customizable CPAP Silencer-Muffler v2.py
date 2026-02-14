@@ -219,7 +219,7 @@ def body_male(muffler_length: MufflerLength,
     part = revolve(Plane.XZ * profile)
     # Grip cutout
     body_grip_cutout = grip_cutout_profile(outer_tube_outer_diameter)
-    part -= extrude(body_grip_cutout, CONNECTOR_LENGTH+muffler_length)
+    part -= extrude(body_grip_cutout, CONNECTOR_LENGTH+END_CAP_GRIP_THICKNESS)
     # Internal threads
     threading = (
         Pos(0,0,CONNECTOR_LENGTH+muffler_length-END_CAP_GRIP_THICKNESS-END_CAP_INSERT_LENGTH-1) 
@@ -294,6 +294,7 @@ def end_cap_grip_female_profile(muffler_o_ring_inner_diameter: MufflerORingInner
 
 def end_cap_male(muffler_o_ring_inner_diameter: MufflerORingInnerDiameter, 
                  threading_extra_spacing_enabled: bool = False):
+    outer_tube_outer_diameter = muffler_o_ring_inner_diameter+2*BODY_WALL_THICKNESS
     # Connector + end-cap grip
     profile = male_connector_wall_profile
     profile += (
@@ -301,6 +302,9 @@ def end_cap_male(muffler_o_ring_inner_diameter: MufflerORingInnerDiameter,
         * end_cap_grip_male_profile(muffler_o_ring_inner_diameter, threading_extra_spacing_enabled)
     )
     part = revolve(Plane.XZ * profile)
+    # Grip cutout
+    body_grip_cutout = grip_cutout_profile(outer_tube_outer_diameter)
+    part -= extrude(body_grip_cutout, CONNECTOR_LENGTH+END_CAP_GRIP_THICKNESS)
     # External threads
     threading = (
         Pos(0,0,CONNECTOR_LENGTH+END_CAP_GRIP_THICKNESS) 
@@ -313,12 +317,16 @@ def end_cap_male(muffler_o_ring_inner_diameter: MufflerORingInnerDiameter,
 def end_cap_female(muffler_o_ring_inner_diameter: MufflerORingInnerDiameter, 
                    connector_female_o_ring_thickness: float, 
                    threading_extra_spacing_enabled: bool = False):
+    outer_tube_outer_diameter = muffler_o_ring_inner_diameter+2*BODY_WALL_THICKNESS
     # Connector + end-cap grip
     profile = female_connector_wall_profile(connector_female_o_ring_thickness) + (
         Pos(0,CONNECTOR_LENGTH) 
         * end_cap_grip_female_profile(muffler_o_ring_inner_diameter, threading_extra_spacing_enabled)
     )
     part = revolve(Plane.XZ * profile)
+    # Grip cutout
+    body_grip_cutout = grip_cutout_profile(outer_tube_outer_diameter)
+    part -= extrude(body_grip_cutout, CONNECTOR_LENGTH+END_CAP_GRIP_THICKNESS)
     # External threads
     threading = (
         Pos(0,0,CONNECTOR_LENGTH+END_CAP_GRIP_THICKNESS) 
