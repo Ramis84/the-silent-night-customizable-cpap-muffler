@@ -116,9 +116,9 @@ threading_body_large = IsoThread(major_diameter=MufflerORingInnerDiameter.LARGE+
 threading_end_cap_small = IsoThread(major_diameter=MufflerORingInnerDiameter.SMALL-2*TOLERANCE, pitch=THREADING_PITCH, length=END_CAP_INSERT_LENGTH, end_finishes=("fade","fade"), interference=0.0)
 threading_end_cap_medium = IsoThread(major_diameter=MufflerORingInnerDiameter.MEDIUM-2*TOLERANCE, pitch=THREADING_PITCH, length=END_CAP_INSERT_LENGTH, end_finishes=("fade","fade"), interference=0.0)
 threading_end_cap_large = IsoThread(major_diameter=MufflerORingInnerDiameter.LARGE-2*TOLERANCE, pitch=THREADING_PITCH, length=END_CAP_INSERT_LENGTH, end_finishes=("fade","fade"), interference=0.0)
-threading_end_cap_small_extra_spacing = IsoThread(major_diameter=MufflerORingInnerDiameter.SMALL-2*TOLERANCE-THREADING_EXTRA_SPACING, pitch=THREADING_PITCH, length=END_CAP_INSERT_LENGTH, end_finishes=("fade","fade"), interference=0.0)
-threading_end_cap_medium_extra_spacing = IsoThread(major_diameter=MufflerORingInnerDiameter.MEDIUM-2*TOLERANCE-THREADING_EXTRA_SPACING, pitch=THREADING_PITCH, length=END_CAP_INSERT_LENGTH, end_finishes=("fade","fade"), interference=0.0)
-threading_end_cap_large_extra_spacing = IsoThread(major_diameter=MufflerORingInnerDiameter.LARGE-2*TOLERANCE-THREADING_EXTRA_SPACING, pitch=THREADING_PITCH, length=END_CAP_INSERT_LENGTH, end_finishes=("fade","fade"), interference=0.0)
+threading_end_cap_small_extra_spacing = IsoThread(major_diameter=MufflerORingInnerDiameter.SMALL-2*(TOLERANCE+THREADING_EXTRA_SPACING), pitch=THREADING_PITCH, length=END_CAP_INSERT_LENGTH, end_finishes=("fade","fade"), interference=0.0)
+threading_end_cap_medium_extra_spacing = IsoThread(major_diameter=MufflerORingInnerDiameter.MEDIUM-2*(TOLERANCE+THREADING_EXTRA_SPACING), pitch=THREADING_PITCH, length=END_CAP_INSERT_LENGTH, end_finishes=("fade","fade"), interference=0.0)
+threading_end_cap_large_extra_spacing = IsoThread(major_diameter=MufflerORingInnerDiameter.LARGE-2*(TOLERANCE+THREADING_EXTRA_SPACING), pitch=THREADING_PITCH, length=END_CAP_INSERT_LENGTH, end_finishes=("fade","fade"), interference=0.0)
 
 def threading_body(muffler_o_ring_inner_diameter: MufflerORingInnerDiameter):
     match muffler_o_ring_inner_diameter:
