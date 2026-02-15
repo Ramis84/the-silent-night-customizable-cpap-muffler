@@ -8,45 +8,73 @@ This CPAP muffler/silencer can be used to dramatically reduce the noise travelli
 ## Introduction
 While using my travel CPAP (a Breas Z1 Auto) for treating my sleep apnea, the noise travelling up the hose have been bothering me. I have tested a couple of mufflers on the market, like the Breas Q-Tube and Breas Q-Lite, but have not been satisfied with the sound reduction, so I have been requiring ear-plugs. This design is fully customizable, but I have included 3 sizes which will be enough for most people, small (70mm long, small volume), medium (85mm, bigger volume) and large (100 mm, very big volume). I recommend the large variant for most people, but even the small design is quieter than the Breas Q-Tube/Q-Lite, so feel free to try them all out. Using these designs, I no longer have a need for ear plugs!
 
-I designed this sound absorption muffler/silencer to be easy to print and assemble, and use common materials. The muffler consists of 3 printed parts: An outer cylinder body, end cap (female or male, depending on if you want the muffler attached directly on the CPAP), and inner mesh tube. There is also an optional gasket you can print in a flexible material like TPU, which can be used to improve the air-tight seal. An alternative if you don't have access to flexible material, is to use a gasket maker/sealant/silicone.
+I designed this sound absorption muffler/silencer to be easy to print and assemble, and use common materials. The muffler consists of 3 printed parts: An outer cylinder body, end cap (female or male, depending on if you want the muffler attached directly on the CPAP), and inner mesh tube.
 
-You will also need to add a sound absorbtion material sheet, like a sheet of fabric or ventilation filter. Also, if using the female end cap, you will also need to add a 22 x 2 mm O-ring (bought, or 3D-printed in TPU) to make it air-tight. 21 x 2 mm and 20 x 2 mm O-rings will also work, but may be a bit trickier to assemble.
+## Required materials
+
+### 1. Sound absorbtion material
+You will need to add a sound absorbtion material sheet. Since this will come in contact with the air you breathe, avoid fabrics that lint and release small fibres, like cotton or fleece. Prefer materials like nonwoven polyester (PET) or polypropylene filter media, sheets like the ones that are used normally as air intake filters in CPAPs, those are made to not shed any material, so will be quite safe to use. You can look for universal filters for air conditioners or vents, those are sold in sheets you can cut. Please note that the purpose of this material is not to filter the air, it is just to absorb the vibrations travelling upp the tube. The air to the mask is supposed to travel through the inner tube without any obstructions.
+
+### 2. O-rings
+You will need an O-ring between the body and end-cap, to make it air-tight. If using the female end cap, you will need to add an extra O-ring.
+
+These are the sizes used by each part, which are very common in O-ring kits:
+
+| Version | O-ring size |
+| ----------- | ----------- |
+| Small body | 44 x 3.5 mm |
+| Medium body | 47 x 3.5 mm |
+| Large body | 50 x 3.5 mm |
+| Female end-cap (optional) | 21 x 2.0 mm *or* 21 x 2.5 mm |
+
+The large O-ring for the body can also be printed using a flexible material like TPU. Printing an O-ring for the female end-cap is difficult since it requires pretty tight tolerances, but not impossible
+
+### 3. Small hose for male end-cap (optional)
+If you use the male end-cap, you will need a small hose in-between the CPAP and muffler, with standard rubber 22mm connectors.
+
+## Versions
+The project (v2) is written using [build123d](https://github.com/gumyr/build123d), and [bd_warehouse](https://bd-warehouse.readthedocs.io/) is used to implement ISO Standard Threads. The parametric source file [The Silent Night Customizable CPAP Silencer-Muffler v2.py](v2-build123d/The%20Silent%20Night%20Customizable%20CPAP%20Silencer-Muffler%20v2.py) is used to generate and export all STL and STEP files.
+
+This was originally written using OpenSCAD. The original legacy files are still available in the subfolder [v1-openscad](v1-openscad).
 
 ## Assembly instructions:
-After printing, make sure to test that the muffler is completely air-tight before final assembly. If using the female end cap, insert the 22 x 2 mm O-ring into the slot on the inside of the connector. Screw together body and end cap, cover one end and blow hard into the other, and ensure that no air escapes any gap. Submerge the muffler in water to figure out any holes/gaps.
+After printing, make sure to test that the muffler parts are completely air-tight before final assembly. Cover one end and blow hard into the other, and ensure that no air escapes any gap.
 
-1. Cut a sound absorption sheet (for instance ventilation filters bought in hardware stores) into a long strip, slightly less wide than the inner tube.
-2. Roll up the sound absorption sheet around the inner tube, so it forms a thick padding around the tube.
-3. Insert the tube and absorption material together into the cylinder body. If it is too large, cut and reduce the length of the sheet.
-4. (Optionally) Insert the printed flexible gasket onto the end cap threading. An alternative is to use gasket maker/sealant/silicone.
-5. Screw in the end-cap into the cylinder.
+1. If using the female end cap, insert the 21 x 2.0 mm *or* 21 x 2.5 mm O-ring (depending on which version of the model you printed) into the slot on the inside of the connector.
+2. Cut a sound absorption sheet (for instance ventilation filters bought in hardware stores) into a long strip, slightly less wide than the inner tube.
+3. Roll up the sound absorption sheet around the inner tube, so it forms a thick padding around the tube.
+4. Insert the tube and absorption material together into the cylinder body. If it is too large, cut and reduce the length of the sheet.
+5. Insert the large O-ring onto the end-cap
+6. Screw in the end-cap into the cylinder.
+7. Test that the muffler is completely air-tight after assembly.
 
-## Version history:
-
-| Date | Description |
+## File descriptions:
+| Filename | Description |
 | ----------- | ----------- |
-| 2024-10-07 | First version |
-| 2026-02-05 | Added female end-cap |
-
-## Model parameters:
-
-### Large (the default):
-```
-Muffler_Length = 100;
-Chamber_Thickness = 15;
-End_Cap_Grip_Cutout_Diameter = 3;
-```
-
-### Medium:
-```
-Muffler_Length = 85;
-Chamber_Thickness = 12;
-End_Cap_Grip_Cutout_Diameter = 2.5;
-```
-
-### Small:
-```
-Muffler_Length = 70;
-Chamber_Thickness = 9;
-End_Cap_Grip_Cutout_Diameter = 2.5;
-```
+| v2-body-male-large | Large sized body using **50 x 3.5 mm** O-ring. |
+| v2-body-male-medium | Medium sized body using **47 x 3.5 mm** O-ring. |
+| v2-body-male-large | Large sized body using **44 x 3.5 mm** O-ring. |
+| v2-end-cap-male-small | Small sized end-cap, with **male** connector. |
+| v2-end-cap-male-small-extra-spacing | Small sized end-cap, with **male** connector. Extra spacing between threads for larger tolerance. |
+| v2-end-cap-male-medium | Medium sized end-cap, with **male** connector. |
+| v2-end-cap-male-medium-extra-spacing | Medium sized end-cap, with **male** connector. Extra spacing between threads for larger tolerance. |
+| v2-end-cap-male-large | Large sized end-cap, with **male** connector. |
+| v2-end-cap-male-large-extra-spacing | Large sized end-cap, with **male** connector. Extra spacing between threads for larger tolerance. |
+| v2-end-cap-female-small-2-0 | Small sized end-cap, with **female** connector. Uses a **21 x 2.0 mm** O-ring. |
+| v2-end-cap-female-small-2-5 | Small sized end-cap, with **female** connector. Uses a **21 x 2.5 mm** O-ring. |
+| v2-end-cap-female-small-2-0-extra-spacing | Small sized end-cap, with **female** connector. Uses a **21 x 2.0 mm** O-ring. Extra spacing between threads for larger tolerance. |
+| v2-end-cap-female-small-2-5-extra-spacing | Small sized end-cap, with **female** connector. Uses a **21 x 2.5 mm** O-ring. Extra spacing between threads for larger tolerance. |
+| v2-end-cap-female-medium-2-0 | Medium sized end-cap, with **female** connector. Uses a **21 x 2.0 mm** O-ring. |
+| v2-end-cap-female-medium-2-5 | Medium sized end-cap, with **female** connector. Uses a **21 x 2.5 mm** O-ring. |
+| v2-end-cap-female-medium-2-0-extra-spacing | Medium sized end-cap, with **female** connector. Uses a **21 x 2.0 mm** O-ring. Extra spacing between threads for larger tolerance. |
+| v2-end-cap-female-medium-2-5-extra-spacing | Medium sized end-cap, with **female** connector. Uses a **21 x 2.5 mm** O-ring. Extra spacing between threads for larger tolerance. |
+| v2-end-cap-female-large-2-0 | Large sized end-cap, with **female** connector. Uses a **21 x 2.0 mm** O-ring. |
+| v2-end-cap-female-large-2-5 | Large sized end-cap, with **female** connector. Uses a **21 x 2.5 mm** O-ring. |
+| v2-end-cap-female-large-2-0-extra-spacing | Large sized end-cap, with **female** connector. Uses a **21 x 2.0 mm** O-ring. Extra spacing between threads for larger tolerance. |
+| v2-end-cap-female-large-2-5-extra-spacing | Large sized end-cap, with **female** connector. Uses a **21 x 2.5 mm** O-ring. Extra spacing between threads for larger tolerance. |
+| v2-inner-mesh-tube-small | Small sized inner mesh tube. |
+| v2-inner-mesh-tube-small-corkscrew | Small sized inner mesh tube, with a corkscrew wall inside. |
+| v2-inner-mesh-tube-medium | Medium sized inner mesh tube. |
+| v2-inner-mesh-tube-medium-corkscrew | Medium sized inner mesh tube, with a corkscrew wall inside. |
+| v2-inner-mesh-tube-large | Large sized inner mesh tube. |
+| v2-inner-mesh-tube-large-corkscrew | Large sized inner mesh tube, with a corkscrew wall inside. |

@@ -9,17 +9,17 @@ from bd_warehouse.thread import IsoThread
 
 # Global
 
-'''Length of the outer tube+endcaps, excluding connectors'''
 class MufflerLength(IntEnum):
     SMALL = 70
     MEDIUM = 85
     LARGE = 100
+'''Length of the outer tube+endcaps, excluding connectors'''
 
-'''The small inner diameter of the o-ring between body and end-cap. Corresponds to the inner diameter of body'''
 class MufflerORingInnerDiameter(IntEnum):
     SMALL = 44
     MEDIUM = 47
     LARGE = 50
+'''The small inner diameter of the o-ring between body and end-cap. Corresponds to the inner diameter of body'''
 
 MUFFLER_O_RING_THICKNESS = 3.5
 '''The thickness of the o-ring in the muffler'''
