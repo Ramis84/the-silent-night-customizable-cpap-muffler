@@ -47,35 +47,48 @@ After printing, make sure to test that the muffler parts are completely air-tigh
 In between uses, I recommend disassembling the muffler to prevent any mold. And just to be safe, discard and replace the fabric regularly, like you do with the air intake filter on the CPAP.
 
 ## File descriptions:
+
+### Large sized muffler (recommended first print)
+
 | Filename | Description |
 | ----------- | ----------- |
-| v2-body-male-large | Large sized body using **50 x 3.5 mm** O-ring. |
-| v2-body-male-medium | Medium sized body using **47 x 3.5 mm** O-ring. |
-| v2-body-male-large | Large sized body using **44 x 3.5 mm** O-ring. |
-| v2-end-cap-male-small | Small sized end-cap, with **male** connector. |
-| v2-end-cap-male-small-extra-spacing | Small sized end-cap, with **male** connector. Extra spacing between threads for larger tolerance. |
-| v2-end-cap-male-medium | Medium sized end-cap, with **male** connector. |
-| v2-end-cap-male-medium-extra-spacing | Medium sized end-cap, with **male** connector. Extra spacing between threads for larger tolerance. |
-| v2-end-cap-male-large | Large sized end-cap, with **male** connector. |
-| v2-end-cap-male-large-extra-spacing | Large sized end-cap, with **male** connector. Extra spacing between threads for larger tolerance. |
-| v2-end-cap-female-small-2-0 | Small sized end-cap, with **female** connector. Uses a **21 x 2.0 mm** O-ring. |
-| v2-end-cap-female-small-2-5 | Small sized end-cap, with **female** connector. Uses a **21 x 2.5 mm** O-ring. |
-| v2-end-cap-female-small-2-0-extra-spacing | Small sized end-cap, with **female** connector. Uses a **21 x 2.0 mm** O-ring. Extra spacing between threads for larger tolerance. |
-| v2-end-cap-female-small-2-5-extra-spacing | Small sized end-cap, with **female** connector. Uses a **21 x 2.5 mm** O-ring. Extra spacing between threads for larger tolerance. |
-| v2-end-cap-female-medium-2-0 | Medium sized end-cap, with **female** connector. Uses a **21 x 2.0 mm** O-ring. |
-| v2-end-cap-female-medium-2-5 | Medium sized end-cap, with **female** connector. Uses a **21 x 2.5 mm** O-ring. |
-| v2-end-cap-female-medium-2-0-extra-spacing | Medium sized end-cap, with **female** connector. Uses a **21 x 2.0 mm** O-ring. Extra spacing between threads for larger tolerance. |
-| v2-end-cap-female-medium-2-5-extra-spacing | Medium sized end-cap, with **female** connector. Uses a **21 x 2.5 mm** O-ring. Extra spacing between threads for larger tolerance. |
-| v2-end-cap-female-large-2-0 | Large sized end-cap, with **female** connector. Uses a **21 x 2.0 mm** O-ring. |
-| v2-end-cap-female-large-2-5 | Large sized end-cap, with **female** connector. Uses a **21 x 2.5 mm** O-ring. |
-| v2-end-cap-female-large-2-0-extra-spacing | Large sized end-cap, with **female** connector. Uses a **21 x 2.0 mm** O-ring. Extra spacing between threads for larger tolerance. |
-| v2-end-cap-female-large-2-5-extra-spacing | Large sized end-cap, with **female** connector. Uses a **21 x 2.5 mm** O-ring. Extra spacing between threads for larger tolerance. |
-| v2-inner-mesh-tube-small | Small sized inner mesh tube. |
-| v2-inner-mesh-tube-small-corkscrew | Small sized inner mesh tube, with a corkscrew wall inside. |
-| v2-inner-mesh-tube-medium | Medium sized inner mesh tube. |
-| v2-inner-mesh-tube-medium-corkscrew | Medium sized inner mesh tube, with a corkscrew wall inside. |
+| v2-body-male-large | Body using **50 x 3.5 mm** O-ring. |
+| v2-end-cap-male-large | End-cap, with **male** connector. |
+| v2-end-cap-male-large-extra-spacing | End-cap, with **male** connector. Extra spacing between threads for larger tolerance. |
+| v2-end-cap-female-large-2-0 | End-cap, with **female** connector. Uses a **21 x 2.0 mm** O-ring. |
+| v2-end-cap-female-large-2-5 | End-cap, with **female** connector. Uses a **21 x 2.5 mm** O-ring. |
+| v2-end-cap-female-large-2-0-extra-spacing | End-cap, with **female** connector. Uses a **21 x 2.0 mm** O-ring. Extra spacing between threads for larger tolerance. |
+| v2-end-cap-female-large-2-5-extra-spacing | End-cap, with **female** connector. Uses a **21 x 2.5 mm** O-ring. Extra spacing between threads for larger tolerance. |
 | v2-inner-mesh-tube-large | Large sized inner mesh tube. |
 | v2-inner-mesh-tube-large-corkscrew | Large sized inner mesh tube, with a corkscrew wall inside. |
+
+### Medium sized muffler
+
+| Filename | Description |
+| ----------- | ----------- |
+| v2-body-male-medium | Body using **47 x 3.5 mm** O-ring. |
+| v2-end-cap-male-medium | End-cap, with **male** connector. |
+| v2-end-cap-male-medium-extra-spacing | End-cap, with **male** connector. Extra spacing between threads for larger tolerance. |
+| v2-end-cap-female-medium-2-0 | End-cap, with **female** connector. Uses a **21 x 2.0 mm** O-ring. |
+| v2-end-cap-female-medium-2-5 | End-cap, with **female** connector. Uses a **21 x 2.5 mm** O-ring. |
+| v2-end-cap-female-medium-2-0-extra-spacing | End-cap, with **female** connector. Uses a **21 x 2.0 mm** O-ring. Extra spacing between threads for larger tolerance. |
+| v2-end-cap-female-medium-2-5-extra-spacing | End-cap, with **female** connector. Uses a **21 x 2.5 mm** O-ring. Extra spacing between threads for larger tolerance. |
+| v2-inner-mesh-tube-medium | Inner mesh tube, open. |
+| v2-inner-mesh-tube-medium-corkscrew | Inner mesh tube, with a corkscrew wall inside. |
+
+### Small sized muffler
+
+| Filename | Description |
+| ----------- | ----------- |
+| v2-body-male-small | Body using **44 x 3.5 mm** O-ring. |
+| v2-end-cap-male-small | End-cap, with **male** connector. |
+| v2-end-cap-male-small-extra-spacing | End-cap, with **male** connector. Extra spacing between threads for larger tolerance. |
+| v2-end-cap-female-small-2-0 | End-cap, with **female** connector. Uses a **21 x 2.0 mm** O-ring. |
+| v2-end-cap-female-small-2-5 | End-cap, with **female** connector. Uses a **21 x 2.5 mm** O-ring. |
+| v2-end-cap-female-small-2-0-extra-spacing | End-cap, with **female** connector. Uses a **21 x 2.0 mm** O-ring. Extra spacing between threads for larger tolerance. |
+| v2-end-cap-female-small-2-5-extra-spacing | End-cap, with **female** connector. Uses a **21 x 2.5 mm** O-ring. Extra spacing between threads for larger tolerance. |
+| v2-inner-mesh-tube-small | Inner mesh tube, open. |
+| v2-inner-mesh-tube-small-corkscrew | Inner mesh tube, with a corkscrew wall inside. |
 
 ## Dependencies
 The project (v2, subfolder: [v2-build123d](v2-build123d)) is written using [build123d](https://github.com/gumyr/build123d), and [bd_warehouse](https://bd-warehouse.readthedocs.io/) is used to implement ISO Standard Threads. The parametric source file [The Silent Night Customizable CPAP Silencer-Muffler v2.py](v2-build123d/The%20Silent%20Night%20Customizable%20CPAP%20Silencer-Muffler%20v2.py) generates and exports all STL and STEP files when executed.
