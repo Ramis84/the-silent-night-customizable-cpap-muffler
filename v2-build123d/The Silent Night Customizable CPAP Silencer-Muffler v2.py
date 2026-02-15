@@ -369,6 +369,14 @@ def inner_mesh_tube(muffler_length: MufflerLength,
         solids.append(antistrand)
     return Compound(solids)
 
+# %% Printable O-ring
+
+def o_ring(muffler_o_ring_inner_diameter: MufflerORingInnerDiameter):
+    profile = Circle(MUFFLER_O_RING_THICKNESS/2, align=(Align.MIN, Align.CENTER))
+    profile = profile & Rectangle(MUFFLER_O_RING_THICKNESS, MUFFLER_O_RING_THICKNESS-0.6, align=(Align.MIN, Align.CENTER))
+    part = revolve(Plane.XZ * Pos(muffler_o_ring_inner_diameter/2) * profile)
+    return part
+
 # %% Generate parts
 
 body_male_small = body_male(MufflerLength.SMALL, MufflerORingInnerDiameter.SMALL)
@@ -401,6 +409,10 @@ inner_mesh_tube_medium = inner_mesh_tube(MufflerLength.MEDIUM, False)
 inner_mesh_tube_medium_corkscrew = inner_mesh_tube(MufflerLength.MEDIUM, True)
 inner_mesh_tube_large = inner_mesh_tube(MufflerLength.LARGE, False)
 inner_mesh_tube_large_corkscrew = inner_mesh_tube(MufflerLength.LARGE, True)
+
+o_ring_small = o_ring(MufflerORingInnerDiameter.SMALL)
+o_ring_medium = o_ring(MufflerORingInnerDiameter.MEDIUM)
+o_ring_large = o_ring(MufflerORingInnerDiameter.LARGE)
 
 # %% Preview 
 # (uncomment one object at a time to preview, import 'ocp_vscode' needs to be uncommented at the top of the file as well)
@@ -436,6 +448,10 @@ inner_mesh_tube_large_corkscrew = inner_mesh_tube(MufflerLength.LARGE, True)
 #show(inner_mesh_tube_large)
 #show(inner_mesh_tube_large_corkscrew)
 
+#show(o_ring_small)
+#show(o_ring_medium)
+#show(o_ring_large)
+
 # %% Exports STL
 
 export_stl(body_male_small, "v2-body-male-small.stl")
@@ -469,6 +485,10 @@ export_stl(inner_mesh_tube_medium_corkscrew, "v2-inner-mesh-tube-medium-corkscre
 export_stl(inner_mesh_tube_large, "v2-inner-mesh-tube-large.stl")
 export_stl(inner_mesh_tube_large_corkscrew, "v2-inner-mesh-tube-large-corkscrew.stl")
 
+export_stl(o_ring_small, "v2-o-ring-small.stl")
+export_stl(o_ring_medium, "v2-o-ring-medium.stl")
+export_stl(o_ring_large, "v2-o-ring-large.stl")
+
 # %% Exports STEP
 
 export_step(body_male_small, "v2-body-male-small.step")
@@ -501,5 +521,9 @@ export_step(inner_mesh_tube_medium, "v2-inner-mesh-tube-medium.step")
 export_step(inner_mesh_tube_medium_corkscrew, "v2-inner-mesh-tube-medium-corkscrew.step")
 export_step(inner_mesh_tube_large, "v2-inner-mesh-tube-large.step")
 export_step(inner_mesh_tube_large_corkscrew, "v2-inner-mesh-tube-large-corkscrew.step")
+
+export_step(o_ring_small, "v2-o-ring-small.step")
+export_step(o_ring_medium, "v2-o-ring-medium.step")
+export_step(o_ring_large, "v2-o-ring-large.step")
 
 # %%
