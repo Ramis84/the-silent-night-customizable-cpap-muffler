@@ -12,8 +12,8 @@ I designed this sound absorption muffler/silencer to be easy to print and assemb
 
 ## Required materials
 
-### 1. Sound absorbtion material
-You will need to add a sound absorbtion material sheet. Since this will come in contact with the air you breathe, avoid fabrics that lint and release small fibres, like cotton or fleece. Prefer materials like nonwoven polyester (PET) or polypropylene filter media, sheets like the ones that are used normally as air intake filters in CPAPs, those are made to not shed any material, so will be quite safe to use. You can look for universal filters for air conditioners or vents, those are sold in sheets you can cut. Please note that the purpose of this material is not to filter the air, it is just to absorb the vibrations travelling upp the tube. The air to the mask is supposed to travel through the inner tube without any obstructions.
+### 1. Sound absorption material
+You will need to add a sound absorption material sheet. Since this will come in contact with the air you breathe, avoid fabrics that lint and release small fibres, like cotton or fleece. Prefer materials like nonwoven polyester (PET) or polypropylene filter media, sheets like the ones that are used normally as air intake filters in CPAPs, those are made to not shed any material, so will be quite safe to use. You can look for universal filters for air conditioners or vents, those are sold in sheets you can cut. Please note that the purpose of this material is not to filter the air, it is just to absorb the vibrations travelling upp the tube. The air to the mask is supposed to travel through the inner tube without any obstructions.
 
 ### 2. O-rings
 You will need an O-ring between the body and end-cap, to make it air-tight. If using the female end cap, you will need to add an extra O-ring.
@@ -32,21 +32,19 @@ The large O-ring for the body can also be printed using a flexible material like
 ### 3. Small hose for male end-cap (optional)
 If you use the male end-cap, you will need a small hose in-between the CPAP and muffler, with standard rubber 22mm connectors.
 
-## Versions
-The project (v2) is written using [build123d](https://github.com/gumyr/build123d), and [bd_warehouse](https://bd-warehouse.readthedocs.io/) is used to implement ISO Standard Threads. The parametric source file [The Silent Night Customizable CPAP Silencer-Muffler v2.py](v2-build123d/The%20Silent%20Night%20Customizable%20CPAP%20Silencer-Muffler%20v2.py) is used to generate and export all STL and STEP files.
-
-This was originally written using OpenSCAD. The original legacy files are still available in the subfolder [v1-openscad](v1-openscad).
-
 ## Assembly instructions:
 After printing, make sure to test that the muffler parts are completely air-tight before final assembly. Cover one end and blow hard into the other, and ensure that no air escapes any gap.
 
 1. If using the female end cap, insert the 21 x 2.0 mm *or* 21 x 2.5 mm O-ring (depending on which version of the model you printed) into the slot on the inside of the connector.
-2. Cut a sound absorption sheet (for instance ventilation filters bought in hardware stores) into a long strip, slightly less wide than the inner tube.
+2. Cut a sound absorption sheet into a long strip, slightly less wide than the inner tube.
 3. Roll up the sound absorption sheet around the inner tube, so it forms a thick padding around the tube.
 4. Insert the tube and absorption material together into the cylinder body. If it is too large, cut and reduce the length of the sheet.
 5. Insert the large O-ring onto the end-cap
 6. Screw in the end-cap into the cylinder.
 7. Test that the muffler is completely air-tight after assembly.
+
+## Maintenance
+In between uses, I recommend disassembling the muffler to prevent any mold. And just to be safe, discard and replace the fabric regularly, like you do with the air intake filter on the CPAP.
 
 ## File descriptions:
 | Filename | Description |
@@ -78,3 +76,8 @@ After printing, make sure to test that the muffler parts are completely air-tigh
 | v2-inner-mesh-tube-medium-corkscrew | Medium sized inner mesh tube, with a corkscrew wall inside. |
 | v2-inner-mesh-tube-large | Large sized inner mesh tube. |
 | v2-inner-mesh-tube-large-corkscrew | Large sized inner mesh tube, with a corkscrew wall inside. |
+
+## Dependencies
+The project (v2, subfolder: [v2-build123d](v2-build123d)) is written using [build123d](https://github.com/gumyr/build123d), and [bd_warehouse](https://bd-warehouse.readthedocs.io/) is used to implement ISO Standard Threads. The parametric source file [The Silent Night Customizable CPAP Silencer-Muffler v2.py](v2-build123d/The%20Silent%20Night%20Customizable%20CPAP%20Silencer-Muffler%20v2.py) generates and exports all STL and STEP files when executed.
+
+The original version (v1) was originally written in OpenSCAD. These obsoleted legacy files are still available in the subfolder [v1-openscad](v1-openscad) for archival reasons.
