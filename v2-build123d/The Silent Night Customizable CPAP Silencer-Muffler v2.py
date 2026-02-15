@@ -75,8 +75,8 @@ END_CAP_INSERT_THICKNESS = 2
 END_CAP_GRIP_CUTOUT_COUNT = 30
 '''The number of cutouts making a grip in the end cap'''
 
-GRIP_CUTOUT_DIAMETER_RATIO = 1/19
-'''The ratio between the muffler outer diameter and grip cutout diameter.'''
+GRIP_CUTOUT_RATIO = 1/19
+'''The ratio between the muffler outer diameter/radius and grip cutout diameter/radius.'''
 
 # Threading
 
@@ -104,8 +104,9 @@ INNER_TUBE_MESH_TWIST_ANGLE = 35
 '''The angle (degrees) in the mesh pattern.'''
 
 # Calculations
-connector_male_inner_diameter = CONNECTOR_MALE_OUTER_DIAMETER - 2*CONNECTOR_MALE_WALL_THICKNESS
-inner_tube_diameter = connector_male_inner_diameter+2*INNER_TUBE_MESH_THICKNESS
+connector_male_outer_radius = CONNECTOR_MALE_OUTER_DIAMETER/2
+connector_male_inner_radius = connector_male_outer_radius - CONNECTOR_MALE_WALL_THICKNESS
+inner_mesh_tube_outer_radius = connector_male_inner_radius+INNER_TUBE_MESH_THICKNESS
 threading_height = 5*0.8660*THREADING_PITCH/8 # Height of thread ISO standard, https://en.wikipedia.org/wiki/ISO_metric_screw_thread
 
 # %% Threadings
@@ -122,7 +123,7 @@ def threading_end_cap(muffler_o_ring_inner_diameter: MufflerORingInnerDiameter,
 
 # %% Male connector
 
-male_connector_wall_profile = Rectangle(connector_male_inner_diameter/2+CONNECTOR_MALE_WALL_THICKNESS, CONNECTOR_LENGTH, align=Align.MIN)
+male_connector_wall_profile = Rectangle(connector_male_outer_radius, CONNECTOR_LENGTH, align=Align.MIN)
 male_connector_wall_profile = fillet(male_connector_wall_profile.vertices()[2], CONNECTOR_CORNER_RADIUS)
 
 # %% Female connector
@@ -139,7 +140,7 @@ def female_connector_o_ring_slot_profile(connector_female_o_ring_thickness: floa
 
 def female_connector_wall_profile(connector_female_o_ring_thickness: float):
     profile = (
-        Pos(CONNECTOR_MALE_OUTER_DIAMETER/2 + TOLERANCE,0,0) 
+        Pos(connector_male_outer_radius + TOLERANCE,0,0) 
         * Rectangle(CONNECTOR_FEMALE_WALL_THICKNESS, CONNECTOR_LENGTH, align=Align.MIN)
     )
     if CONNECTOR_CORNER_RADIUS > 0:
@@ -153,22 +154,21 @@ def female_connector_wall_profile(connector_female_o_ring_thickness: float):
 
 # %% Grip cutout
 
-def grip_cutout_profile(outer_tube_outer_diameter: float):
-    grip_cutout_diameter = outer_tube_outer_diameter*GRIP_CUTOUT_DIAMETER_RATIO
+def grip_cutout_profile(outer_tube_outer_radius: float):
+    grip_cutout_radius = outer_tube_outer_radius*GRIP_CUTOUT_RATIO
     circles = (
-        PolarLocations(radius=(outer_tube_outer_diameter+grip_cutout_diameter)/2, count=END_CAP_GRIP_CUTOUT_COUNT)
-        * Circle(grip_cutout_diameter/2, align=(Align.CENTER,Align.MIN))
+        PolarLocations(radius=outer_tube_outer_radius+grip_cutout_radius, count=END_CAP_GRIP_CUTOUT_COUNT)
+        * Circle(grip_cutout_radius, align=(Align.CENTER,Align.MIN))
     )
     return Compound(circles)
 
 # %% Base grip
 
 def grip_base_profile(muffler_o_ring_inner_diameter: MufflerORingInnerDiameter):
-    outer_tube_inner_diameter = muffler_o_ring_inner_diameter
-    outer_tube_outer_diameter = outer_tube_inner_diameter+2*BODY_WALL_THICKNESS
-    grip_cutout_diameter = outer_tube_outer_diameter*GRIP_CUTOUT_DIAMETER_RATIO
+    outer_tube_outer_radius = muffler_o_ring_inner_diameter/2+BODY_WALL_THICKNESS
+    grip_cutout_radius = outer_tube_outer_radius*GRIP_CUTOUT_RATIO
     # Base grip
-    profile = Rectangle((outer_tube_outer_diameter+grip_cutout_diameter)/2, END_CAP_GRIP_THICKNESS, align=Align.MIN)
+    profile = Rectangle(outer_tube_outer_radius+grip_cutout_radius, END_CAP_GRIP_THICKNESS, align=Align.MIN)
     profile = fillet(profile.vertices()[2], END_CAP_CORNER_RADIUS)
     return profile
 
@@ -176,7 +176,7 @@ def grip_base_profile(muffler_o_ring_inner_diameter: MufflerORingInnerDiameter):
 
 def body_male_profile(muffler_length: MufflerLength,
                       muffler_o_ring_inner_diameter: MufflerORingInnerDiameter):
-    outer_tube_outer_diameter = muffler_o_ring_inner_diameter+2*BODY_WALL_THICKNESS
+    outer_tube_outer_radius = muffler_o_ring_inner_diameter/2+BODY_WALL_THICKNESS
     # Connector
     profile = male_connector_wall_profile
     # Grip
@@ -187,7 +187,7 @@ def body_male_profile(muffler_length: MufflerLength,
     # Outer tube
     profile += (
         Pos(0,CONNECTOR_LENGTH+END_CAP_GRIP_THICKNESS) 
-        * Rectangle(outer_tube_outer_diameter/2,muffler_length-2*END_CAP_GRIP_THICKNESS, align=Align.MIN)
+        * Rectangle(outer_tube_outer_radius,muffler_length-2*END_CAP_GRIP_THICKNESS, align=Align.MIN)
     )
     # Slot for o-ring
     profile -= (
@@ -199,22 +199,22 @@ def body_male_profile(muffler_length: MufflerLength,
     # Slot for inner mesh tube
     profile -= (
         Pos(0,CONNECTOR_LENGTH+END_CAP_BOTTOM_THICKNESS-END_CAP_INNER_TUBE_SLOT_DEPTH) 
-        * Rectangle(inner_tube_diameter/2+TOLERANCE, END_CAP_GRIP_THICKNESS, align=Align.MIN)
+        * Rectangle(inner_mesh_tube_outer_radius+TOLERANCE, END_CAP_GRIP_THICKNESS, align=Align.MIN)
     )
     # Hole through connector
-    profile -= Rectangle(CONNECTOR_MALE_OUTER_DIAMETER/2-CONNECTOR_MALE_WALL_THICKNESS, CONNECTOR_LENGTH+END_CAP_BOTTOM_THICKNESS, align=Align.MIN)
+    profile -= Rectangle(connector_male_inner_radius, CONNECTOR_LENGTH+END_CAP_BOTTOM_THICKNESS, align=Align.MIN)
     return profile
 
 # %% Male end cap, with connector
 
 def body_male(muffler_length: MufflerLength, 
               muffler_o_ring_inner_diameter: MufflerORingInnerDiameter):
-    outer_tube_outer_diameter = muffler_o_ring_inner_diameter+2*BODY_WALL_THICKNESS
+    outer_tube_outer_radius = muffler_o_ring_inner_diameter/2+BODY_WALL_THICKNESS
     # Revolve 2D profile
     profile = body_male_profile(muffler_length, muffler_o_ring_inner_diameter)
     part = revolve(Plane.XZ * profile)
     # Grip cutout
-    body_grip_cutout = grip_cutout_profile(outer_tube_outer_diameter)
+    body_grip_cutout = grip_cutout_profile(outer_tube_outer_radius)
     part -= extrude(body_grip_cutout, CONNECTOR_LENGTH+END_CAP_GRIP_THICKNESS)
     # Internal threads
     threading = (
@@ -248,7 +248,7 @@ def end_cap_grip_base_profile(muffler_o_ring_inner_diameter: MufflerORingInnerDi
     # Slot for inner mesh tube
     profile -= (
         Pos(0,END_CAP_BOTTOM_THICKNESS-END_CAP_INNER_TUBE_SLOT_DEPTH) 
-        * Rectangle(inner_tube_diameter/2+TOLERANCE, END_CAP_GRIP_THICKNESS, align=Align.MIN)
+        * Rectangle(inner_mesh_tube_outer_radius+TOLERANCE, END_CAP_GRIP_THICKNESS, align=Align.MIN)
     )
     return profile
 
@@ -264,19 +264,19 @@ def end_cap_male_profile(muffler_o_ring_inner_diameter: MufflerORingInnerDiamete
         * end_cap_grip_base_profile(muffler_o_ring_inner_diameter, threading_extra_spacing_enabled)
     )
     # Hole through connector
-    profile -= Rectangle(CONNECTOR_MALE_OUTER_DIAMETER/2-CONNECTOR_MALE_WALL_THICKNESS, CONNECTOR_LENGTH+END_CAP_BOTTOM_THICKNESS, align=Align.MIN)
+    profile -= Rectangle(connector_male_inner_radius, CONNECTOR_LENGTH+END_CAP_BOTTOM_THICKNESS, align=Align.MIN)
     return profile
 
 # %% Male end cap
 
 def end_cap_male(muffler_o_ring_inner_diameter: MufflerORingInnerDiameter, 
                  threading_extra_spacing_enabled: bool = False):
-    outer_tube_outer_diameter = muffler_o_ring_inner_diameter+2*BODY_WALL_THICKNESS
+    outer_tube_outer_radius = muffler_o_ring_inner_diameter/2+BODY_WALL_THICKNESS
     # Revolve 2D profile
     profile = end_cap_male_profile(muffler_o_ring_inner_diameter, threading_extra_spacing_enabled)
     part = revolve(Plane.XZ * profile)
     # Grip cutout
-    body_grip_cutout = grip_cutout_profile(outer_tube_outer_diameter)
+    body_grip_cutout = grip_cutout_profile(outer_tube_outer_radius)
     part -= extrude(body_grip_cutout, CONNECTOR_LENGTH+END_CAP_GRIP_THICKNESS)
     # External threads
     threading = (
@@ -290,7 +290,7 @@ def end_cap_male(muffler_o_ring_inner_diameter: MufflerORingInnerDiameter,
 def end_cap_female_profile(muffler_o_ring_inner_diameter: MufflerORingInnerDiameter,
                            connector_female_o_ring_thickness: float,
                            threading_extra_spacing_enabled: bool):
-    female_connection_inside_radius = CONNECTOR_MALE_OUTER_DIAMETER/2 + TOLERANCE
+    female_connection_inside_radius = connector_male_outer_radius + TOLERANCE
     # Connector
     profile = female_connector_wall_profile(connector_female_o_ring_thickness)
     # End-cap grip
@@ -306,7 +306,7 @@ def end_cap_female_profile(muffler_o_ring_inner_diameter: MufflerORingInnerDiame
                 (0, female_connection_inside_radius))
     )
     # Cut off top of taper, in case the top of taper becomes narrower then a male connector diameter
-    profile -= Rectangle(CONNECTOR_MALE_OUTER_DIAMETER/2-CONNECTOR_MALE_WALL_THICKNESS, CONNECTOR_LENGTH+END_CAP_BOTTOM_THICKNESS, align=Align.MIN)
+    profile -= Rectangle(connector_male_inner_radius, CONNECTOR_LENGTH+END_CAP_BOTTOM_THICKNESS, align=Align.MIN)
     return profile
 
 # %% Female end cap
@@ -314,12 +314,12 @@ def end_cap_female_profile(muffler_o_ring_inner_diameter: MufflerORingInnerDiame
 def end_cap_female(muffler_o_ring_inner_diameter: MufflerORingInnerDiameter, 
                    connector_female_o_ring_thickness: float, 
                    threading_extra_spacing_enabled: bool = False):
-    outer_tube_outer_diameter = muffler_o_ring_inner_diameter+2*BODY_WALL_THICKNESS
+    outer_tube_outer_radius = muffler_o_ring_inner_diameter/2+BODY_WALL_THICKNESS
     # Revolve 2D profile
     profile = end_cap_female_profile(muffler_o_ring_inner_diameter, connector_female_o_ring_thickness, threading_extra_spacing_enabled)
     part = revolve(Plane.XZ * profile)
     # Grip cutout
-    body_grip_cutout = grip_cutout_profile(outer_tube_outer_diameter)
+    body_grip_cutout = grip_cutout_profile(outer_tube_outer_radius)
     part -= extrude(body_grip_cutout, CONNECTOR_LENGTH+END_CAP_GRIP_THICKNESS)
     # External threads
     threading = (
@@ -335,23 +335,23 @@ def inner_mesh_tube(muffler_length: MufflerLength,
     inner_tube_length = muffler_length-2*END_CAP_BOTTOM_THICKNESS+2*END_CAP_INNER_TUBE_SLOT_DEPTH
     ring_profile = Rectangle(INNER_TUBE_MESH_THICKNESS, INNER_TUBE_MESH_THICKNESS, align=Align.MIN)
     # End rings
-    bottom_ring = revolve(Plane.XZ * Pos(connector_male_inner_diameter/2,0) * ring_profile)
+    bottom_ring = revolve(Plane.XZ * Pos(connector_male_inner_radius,0) * ring_profile)
     top_ring = Pos(0,0,inner_tube_length-INNER_TUBE_MESH_THICKNESS) * bottom_ring
     # Mesh
     ring_circumference = pi*CONNECTOR_MALE_OUTER_DIAMETER
     pitch = tan(radians(90-INNER_TUBE_MESH_TWIST_ANGLE))*ring_circumference
-    clockwise_helix = Helix(pitch, inner_tube_length, connector_male_inner_diameter/2)
-    anticlockwise_helix = Helix(pitch, inner_tube_length, connector_male_inner_diameter/2, lefthand=True)
+    clockwise_helix = Helix(pitch, inner_tube_length, connector_male_inner_radius)
+    anticlockwise_helix = Helix(pitch, inner_tube_length, connector_male_inner_radius, lefthand=True)
     mesh_profile = Rectangle(INNER_TUBE_MESH_THICKNESS, INNER_TUBE_MESH_THICKNESS, align=(Align.MIN, Align.CENTER))
-    clockwise = sweep(Pos(connector_male_inner_diameter/2,0,0) * mesh_profile, clockwise_helix, is_frenet=True)
-    anticlockwise = sweep(Pos(connector_male_inner_diameter/2,0,0) * mesh_profile, anticlockwise_helix, is_frenet=True)
+    clockwise = sweep(Pos(connector_male_inner_radius,0,0) * mesh_profile, clockwise_helix, is_frenet=True)
+    anticlockwise = sweep(Pos(connector_male_inner_radius,0,0) * mesh_profile, anticlockwise_helix, is_frenet=True)
     # Make a flat Compound of all the objects
     solids = [bottom_ring, top_ring]
     # Optional corkscrew
     if include_corkscrew:
-        clockwise_helix = Helix(INNER_TUBE_SCREW_TWIST_TURNS*inner_tube_length, inner_tube_length, connector_male_inner_diameter/2)
-        corkscrew_profile = Rectangle(connector_male_inner_diameter, INNER_TUBE_CORKSCREW_THICKNESS, align=Align.MAX)
-        corkscrew = sweep(Pos(connector_male_inner_diameter/2,0,0) * corkscrew_profile, clockwise_helix, is_frenet=True)
+        clockwise_helix = Helix(INNER_TUBE_SCREW_TWIST_TURNS*inner_tube_length, inner_tube_length, connector_male_inner_radius)
+        corkscrew_profile = Rectangle(connector_male_inner_radius, INNER_TUBE_CORKSCREW_THICKNESS, align=Align.MAX)
+        corkscrew = sweep(Pos(connector_male_inner_radius,0,0) * corkscrew_profile, clockwise_helix, is_frenet=True)
         solids.append(corkscrew)
     # Merge mesh strands into same Compound
     for i in range(INNER_TUBE_MESH_COUNT):
