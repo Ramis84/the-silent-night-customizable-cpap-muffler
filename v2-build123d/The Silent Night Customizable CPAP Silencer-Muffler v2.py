@@ -78,7 +78,7 @@ END_CAP_INSERT_THICKNESS = 2
 END_CAP_GRIP_CUTOUT_COUNT = 30
 '''The number of cutouts making a grip in the end cap'''
 
-GRIP_CUTOUT_RATIO = 1/19
+GRIP_CUTOUT_RATIO = 1/18
 '''The ratio between the muffler outer diameter/radius and grip cutout diameter/radius.'''
 
 # Threading
