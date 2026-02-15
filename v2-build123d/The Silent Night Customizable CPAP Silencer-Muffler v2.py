@@ -24,6 +24,9 @@ class MufflerORingInnerDiameter(IntEnum):
 MUFFLER_O_RING_THICKNESS = 3.5
 '''The thickness of the o-ring in the muffler'''
 
+EXTRA_MARGIN_OUTSIDE_MUFFLER_O_RING = 0.4
+'''Extra margin added outside large O-ring between body and end-cap'''
+
 TOLERANCE = 0.2
 '''Extra spacing added for parts that are assembled together, increase if too tight'''
 
@@ -157,7 +160,7 @@ def female_connector_wall_profile(connector_female_o_ring_thickness: float):
 def grip_cutout_profile(outer_tube_outer_radius: float):
     grip_cutout_radius = outer_tube_outer_radius*GRIP_CUTOUT_RATIO
     circles = (
-        PolarLocations(radius=outer_tube_outer_radius+grip_cutout_radius, count=END_CAP_GRIP_CUTOUT_COUNT)
+        PolarLocations(radius=outer_tube_outer_radius+grip_cutout_radius+EXTRA_MARGIN_OUTSIDE_MUFFLER_O_RING, count=END_CAP_GRIP_CUTOUT_COUNT)
         * Circle(grip_cutout_radius, align=(Align.CENTER,Align.MIN))
     )
     return Compound(circles)
@@ -168,7 +171,7 @@ def grip_base_profile(muffler_o_ring_inner_diameter: MufflerORingInnerDiameter):
     outer_tube_outer_radius = muffler_o_ring_inner_diameter/2+BODY_WALL_THICKNESS
     grip_cutout_radius = outer_tube_outer_radius*GRIP_CUTOUT_RATIO
     # Base grip
-    profile = Rectangle(outer_tube_outer_radius+grip_cutout_radius, END_CAP_GRIP_THICKNESS, align=Align.MIN)
+    profile = Rectangle(outer_tube_outer_radius+grip_cutout_radius+EXTRA_MARGIN_OUTSIDE_MUFFLER_O_RING, END_CAP_GRIP_THICKNESS, align=Align.MIN)
     profile = fillet(profile.vertices()[2], END_CAP_CORNER_RADIUS)
     return profile
 
@@ -187,7 +190,7 @@ def body_male_profile(muffler_length: MufflerLength,
     # Outer tube
     profile += (
         Pos(0,CONNECTOR_LENGTH+END_CAP_GRIP_THICKNESS) 
-        * Rectangle(outer_tube_outer_radius,muffler_length-2*END_CAP_GRIP_THICKNESS, align=Align.MIN)
+        * Rectangle(outer_tube_outer_radius+EXTRA_MARGIN_OUTSIDE_MUFFLER_O_RING,muffler_length-2*END_CAP_GRIP_THICKNESS, align=Align.MIN)
     )
     # Slot for o-ring
     profile -= (
