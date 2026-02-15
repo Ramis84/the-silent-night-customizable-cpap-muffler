@@ -8,7 +8,21 @@ This CPAP muffler/silencer can be used to dramatically reduce the noise travelli
 ## Introduction
 While using my travel CPAP (a Breas Z1 Auto) for treating my sleep apnea, the noise travelling up the hose have been bothering me. I have tested a couple of mufflers on the market, like the Breas Q-Tube and Breas Q-Lite, but have not been satisfied with the sound reduction, so I have been requiring ear-plugs. This design is fully customizable, but I have included 3 sizes which will be enough for most people, small (70mm long, small volume), medium (85mm, bigger volume) and large (100 mm, very big volume). I recommend the large variant for most people, but even the small design is quieter than the Breas Q-Tube/Q-Lite, so feel free to try them all out. Using these designs, I no longer have a need for ear plugs!
 
-I designed this sound absorption muffler/silencer to be easy to print and assemble, and use common materials. The muffler consists of 3 printed parts: An outer cylinder body, end cap (female or male, depending on if you want the muffler attached directly on the CPAP), and inner mesh tube.
+I designed this sound absorption muffler/silencer to be easy to print and assemble, and use common materials. The muffler consists of 3 printed parts: 
+- **An outer cylinder body**, with male 22mm standard hose connector.
+- **An end cap**, female *or* male standard 22mm connector, depending on if you want the muffler attached directly on the CPAP or on a hose.
+- **An inner mesh tube**, which separates the sound absorption material from the air flow.
+
+You will need some additional material to assemble the muffler, see the section **Required materials** below.
+
+## Versions
+There are two versions of this design:
+- [v2-build123d](v2-build123d), which uses standard O-ring sizes and are easier to assemble and maintain. <br />
+**Files available:** STL & STEP-files. And .PY (Python/build123d) source file.
+- [v1-openscad](v1-openscad), an older version with less options, and harder to find O-ring sizes. <br />
+**Files available:** STL-files. And a .SCAD (OpenSCAD) source file.
+
+Always use the newer v2 model, unless you are printing spare parts for your old muffler.
 
 ## Required materials
 
@@ -27,7 +41,7 @@ These are the sizes used by each part, which are very common in O-ring kits:
 | Large body | 50 x 3.5 mm |
 | Female end-cap (optional) | 21 x 2.0 mm *or* 21 x 2.5 mm |
 
-The large O-ring for the body can also be printed using a flexible material like TPU. Printing an O-ring for the female end-cap is difficult since it requires pretty tight tolerances, but not impossible
+The large O-ring for the body can also be printed using a flexible material like TPU. Printing an O-ring for the female end-cap is difficult since it requires pretty tight tolerances, so it's not recommended.
 
 ### 3. Small hose for male end-cap (optional)
 If you use the male end-cap, you will need a small hose in-between the CPAP and muffler, with standard rubber 22mm connectors.
@@ -90,7 +104,7 @@ In between uses, I recommend disassembling the muffler to prevent any mold. And 
 | v2-inner-mesh-tube-small | Inner mesh tube, open. |
 | v2-inner-mesh-tube-small-corkscrew | Inner mesh tube, with a corkscrew wall inside. |
 
-## Dependencies
+## Dependencies / How to build
 The project (v2, subfolder: [v2-build123d](v2-build123d)) is written using [build123d](https://github.com/gumyr/build123d), and [bd_warehouse](https://bd-warehouse.readthedocs.io/) is used to implement ISO Standard Threads. The parametric source file [The Silent Night Customizable CPAP Silencer-Muffler v2.py](v2-build123d/The%20Silent%20Night%20Customizable%20CPAP%20Silencer-Muffler%20v2.py) generates and exports all STL and STEP files when executed.
 
 The original version (v1) was originally written in OpenSCAD. These obsoleted legacy files are still available in the subfolder [v1-openscad](v1-openscad) for archival reasons.
