@@ -18,9 +18,9 @@ You will need some additional material to assemble the muffler, see the section 
 ## Versions
 There are two versions of this design:
 - [v2-build123d](v2-build123d), which uses standard O-ring sizes and are easier to assemble and maintain. <br />
-**Files available:** STL & STEP-files. And .PY (Python/build123d) source file.
+**Files available:** .STL & .STEP-files. And a .PY (Python/build123d) source file.
 - [v1-openscad](v1-openscad), an older version with less options, and harder to find O-ring sizes. <br />
-**Files available:** STL-files. And a .SCAD (OpenSCAD) source file.
+**Files available:** .STL-files. And a .SCAD (OpenSCAD) source file.
 
 Always use the newer v2 model, unless you are printing spare parts for your old muffler.
 
@@ -47,13 +47,13 @@ The large O-ring for the body can also be printed using a flexible material like
 If you use the male end-cap, you will need a small hose in-between the CPAP and muffler, with standard rubber 22mm connectors.
 
 ## Assembly instructions:
-After printing, make sure to test that the muffler parts are completely air-tight before final assembly. Cover one end and blow hard into the other, and ensure that no air escapes any gap.
+After printing, make sure to test that the body and end-cap are completely air-tight before final assembly. Cover one end and blow hard into the other, and ensure that no air escapes any gap.
 
 1. If using the female end cap, insert the 21 x 2.0 mm *or* 21 x 2.5 mm O-ring (depending on which version of the model you printed) into the slot on the inside of the connector.
 2. Cut a sound absorption sheet into a long strip, slightly less wide than the inner tube.
 3. Roll up the sound absorption sheet around the inner tube, so it forms a thick padding around the tube.
 4. Insert the tube and absorption material together into the cylinder body. If it is too large, cut and reduce the length of the sheet.
-5. Insert the large O-ring onto the end-cap
+5. Insert the large O-ring onto the end-cap.
 6. Screw in the end-cap into the cylinder.
 7. Test that the muffler is completely air-tight after assembly.
 
@@ -75,6 +75,7 @@ In between uses, I recommend disassembling the muffler to prevent any mold. And 
 | v2-end-cap-female-large-2-5-extra-spacing | End-cap, with **female** connector. Uses a **21 x 2.5 mm** O-ring. Extra spacing between threads for larger tolerance. |
 | v2-inner-mesh-tube-large | Large sized inner mesh tube. |
 | v2-inner-mesh-tube-large-corkscrew | Large sized inner mesh tube, with a corkscrew wall inside. |
+| v2-o-ring-large | Large sized printable o-ring (use flexible material, like TPU). |
 
 ### Medium sized muffler
 
@@ -89,6 +90,7 @@ In between uses, I recommend disassembling the muffler to prevent any mold. And 
 | v2-end-cap-female-medium-2-5-extra-spacing | End-cap, with **female** connector. Uses a **21 x 2.5 mm** O-ring. Extra spacing between threads for larger tolerance. |
 | v2-inner-mesh-tube-medium | Inner mesh tube, open. |
 | v2-inner-mesh-tube-medium-corkscrew | Inner mesh tube, with a corkscrew wall inside. |
+| v2-o-ring-medium | Large sized printable o-ring (use flexible material, like TPU). |
 
 ### Small sized muffler
 
@@ -103,6 +105,7 @@ In between uses, I recommend disassembling the muffler to prevent any mold. And 
 | v2-end-cap-female-small-2-5-extra-spacing | End-cap, with **female** connector. Uses a **21 x 2.5 mm** O-ring. Extra spacing between threads for larger tolerance. |
 | v2-inner-mesh-tube-small | Inner mesh tube, open. |
 | v2-inner-mesh-tube-small-corkscrew | Inner mesh tube, with a corkscrew wall inside. |
+| v2-o-ring-small | Large sized printable o-ring (use flexible material, like TPU). |
 
 ## Dependencies / How to build
 The project (v2, subfolder: [v2-build123d](v2-build123d)) is written using [build123d](https://github.com/gumyr/build123d), and [bd_warehouse](https://bd-warehouse.readthedocs.io/) is used to implement ISO Standard Threads. The parametric source file [The Silent Night Customizable CPAP Silencer-Muffler v2.py](v2-build123d/The%20Silent%20Night%20Customizable%20CPAP%20Silencer-Muffler%20v2.py) generates and exports all STL and STEP files when executed.

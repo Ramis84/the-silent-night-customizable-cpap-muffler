@@ -198,7 +198,7 @@ def body_male_profile(muffler_length: MufflerLength,
         * Ellipse(MUFFLER_O_RING_THICKNESS/2, MUFFLER_O_RING_THICKNESS/2.5) # Make slot slightly smaller than o-ring, so it can "squish"
     )
     # Inside of the body
-    profile -= Pos(0,CONNECTOR_LENGTH+END_CAP_BOTTOM_THICKNESS) * Rectangle(muffler_o_ring_inner_diameter/2, muffler_length, align=Align.MIN)
+    profile -= Pos(0,CONNECTOR_LENGTH+END_CAP_BOTTOM_THICKNESS) * Rectangle(outer_tube_inner_radius, muffler_length, align=Align.MIN)
     # Slot for inner mesh tube
     profile -= (
         Pos(0,CONNECTOR_LENGTH+END_CAP_BOTTOM_THICKNESS-END_CAP_INNER_TUBE_SLOT_DEPTH) 
