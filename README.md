@@ -6,47 +6,122 @@ This CPAP muffler/silencer can be used to dramatically reduce the noise travelli
 ![All sizes of the printed parts](images/v1-all-small.jpg)
 
 ## Introduction
-While using my travel CPAP (a Breas Z1 Auto) for treating my sleep apnea, the noise travelling up the hose have been bothering me. I have tested a couple of mufflers on the market, like the Breas Q-Tube and Breas Q-Lite, but have not been satisfied with the sound reduction, so I have been requiring ear-plugs. This design is fully customizable, but I have included 3 sizes which will be enough for most people, small (70mm long, small volume), medium (85mm, bigger volume) and large (100 mm, very big volume). I recommend the large variant for most people, but even the small design is quieter than the Breas Q-Tube/Q-Lite, so feel free to try them all out. Using these designs, I no longer have a need for ear plugs!
+While using my travel CPAP (a Breas Z1 Auto) for treating my sleep apnea, the noise travelling up the hose have been bothering me. I have tested a couple of mufflers on the market, like the Breas Q-Tube and Breas Q-Lite, but have not been satisfied with the sound reduction, so I have been requiring ear-plugs. This design is fully customizable, but I have included 3 sizes in different diameters, which will be enough for most people. Small (44 mm O-ring), Medium (47 mm O-ring) and Large (50 mm O-ring). The mufflers are also abailable in multiple lengths. I recommend the large variant with 100 mm body for most people, and later try out a smaller one if you are happy. Even the small design is quieter than the Breas Q-Tube/Q-Lite in my experience, so feel free to try them all out. Using these designs, I no longer have a need for ear plugs!
 
-I designed this sound absorption muffler/silencer to be easy to print and assemble, and use common materials. The muffler consists of 3 printed parts: An outer cylinder body, end cap (female or male, depending on if you want the muffler attached directly on the CPAP), and inner mesh tube. There is also an optional gasket you can print in a flexible material like TPU, which can be used to improve the air-tight seal. An alternative if you don't have access to flexible material, is to use a gasket maker/sealant/silicone.
+I designed this sound absorption muffler/silencer to be easy to print and assemble, and use common materials. The muffler consists of 3 printed parts: 
+- **An outer cylinder body**, with male 22mm standard hose connector.
+- **An end cap**, female *or* male standard 22mm connector, depending on if you want the muffler attached directly on the CPAP or on a hose.
+- **An inner mesh tube**, which separates the sound absorption material from the air flow.
 
-You will also need to add a sound absorbtion material sheet, like a sheet of fabric or ventilation filter. Also, if using the female end cap, you will also need to add a 22 x 2 mm O-ring (bought, or 3D-printed in TPU) to make it air-tight. 21 x 2 mm and 20 x 2 mm O-rings will also work, but may be a bit trickier to assemble.
+You will need some additional material to assemble the muffler, see the section **Required materials** below.
+
+## Versions
+There are two versions of this design:
+- [v2-build123d](v2-build123d), which uses standard O-ring sizes and are easier to assemble and maintain. <br />
+**Files available:** .STL & .STEP-files. And a .PY (Python/build123d) source file.
+- [v1-openscad](v1-openscad), an older version with less options, and harder to find O-ring sizes. <br />
+**Files available:** .STL-files. And a .SCAD (OpenSCAD) source file.
+
+Always use the newer v2 model, unless you are printing spare parts for your old muffler.
+
+## Required materials
+
+### 1. Sound absorption material
+You will need to add a sound absorption material sheet. Since this will come in contact with the air you breathe, avoid fabrics that lint and release small fibres, like cotton or fleece. Prefer materials like nonwoven polyester (PET) or polypropylene filter media, sheets like the ones that are used normally as air intake filters in CPAPs, those are made to not shed any material, so will be quite safe to use. You can look for universal filters for air conditioners or vents, those are sold in sheets you can cut. Please note that the purpose of this material is not to filter the air, it is just to absorb the vibrations travelling upp the tube. The air to the mask is supposed to travel through the inner tube without any obstructions.
+
+### 2. O-rings
+You will need an O-ring between the body and end-cap, to make it air-tight. If using the female end cap, you will need to add an extra O-ring.
+
+These are the sizes used by each part, which are very common in O-ring kits:
+
+| Version | O-ring size |
+| ----------- | ----------- |
+| Small body | 44 x 3.5 mm |
+| Medium body | 47 x 3.5 mm |
+| Large body | 50 x 3.5 mm |
+| Female end-cap (optional) | 21 x 2.0 mm *or* 21 x 2.5 mm |
+
+The large O-ring for the body can also be printed using a flexible material like TPU. Printing an O-ring for the female end-cap is difficult since it requires pretty tight tolerances, so it's not recommended.
+
+### 3. Small hose for male end-cap (optional)
+If you use the male end-cap, you will need a small hose in-between the CPAP and muffler, with standard rubber 22mm connectors.
 
 ## Assembly instructions:
-After printing, make sure to test that the muffler is completely air-tight before final assembly. If using the female end cap, insert the 22 x 2 mm O-ring into the slot on the inside of the connector. Screw together body and end cap, cover one end and blow hard into the other, and ensure that no air escapes any gap. Submerge the muffler in water to figure out any holes/gaps.
+After printing, make sure to test that the body and end-cap are completely air-tight before final assembly. Cover one end and blow hard into the other, and ensure that no air escapes any gap.
 
-1. Cut a sound absorption sheet (for instance ventilation filters bought in hardware stores) into a long strip, slightly less wide than the inner tube.
-2. Roll up the sound absorption sheet around the inner tube, so it forms a thick padding around the tube.
-3. Insert the tube and absorption material together into the cylinder body. If it is too large, cut and reduce the length of the sheet.
-4. (Optionally) Insert the printed flexible gasket onto the end cap threading. An alternative is to use gasket maker/sealant/silicone.
-5. Screw in the end-cap into the cylinder.
+1. If using the female end cap, insert the 21 x 2.0 mm *or* 21 x 2.5 mm O-ring (depending on which version of the model you printed) into the slot on the inside of the connector.
+2. Cut a sound absorption sheet into a long strip, slightly less wide than the inner tube.
+3. Roll up the sound absorption sheet around the inner tube, so it forms a thick padding around the tube.
+4. Insert the tube and absorption material together into the cylinder body. If it is too large, cut and reduce the length of the sheet.
+5. Insert the large O-ring onto the end-cap.
+6. Screw in the end-cap into the cylinder.
+7. Test that the muffler is completely air-tight after assembly.
 
-## Version history:
+## Maintenance
+In between uses, I recommend disassembling the muffler to prevent any mold. And just to be safe, discard and replace the fabric regularly, like you do with the air intake filter on the CPAP.
 
-| Date | Description |
+## File descriptions:
+
+### Large sized muffler (recommended first print)
+
+| Filename | Description |
 | ----------- | ----------- |
-| 2024-10-07 | First version |
-| 2026-02-05 | Added female end-cap |
+| v2-body-male-large-100 | **100 mm** body using **50 x 3.5 mm** O-ring. (recommended) |
+| v2-body-male-large-120 | **120 mm** body using **50 x 3.5 mm** O-ring. |
+| v2-end-cap-male-large | End-cap, with **male** connector. |
+| v2-end-cap-male-large-extra-spacing | End-cap, with **male** connector. Extra spacing between threads for larger tolerance. |
+| v2-end-cap-female-large-2-0 | End-cap, with **female** connector. Uses a **21 x 2.0 mm** O-ring. |
+| v2-end-cap-female-large-2-5 | End-cap, with **female** connector. Uses a **21 x 2.5 mm** O-ring. |
+| v2-end-cap-female-large-2-0-extra-spacing | End-cap, with **female** connector. Uses a **21 x 2.0 mm** O-ring. Extra spacing between threads for larger tolerance. |
+| v2-end-cap-female-large-2-5-extra-spacing | End-cap, with **female** connector. Uses a **21 x 2.5 mm** O-ring. Extra spacing between threads for larger tolerance. |
+| v2-o-ring-large | Large sized printable o-ring (use flexible material, like TPU). |
 
-## Model parameters:
+### Medium sized muffler
 
-### Large (the default):
-```
-Muffler_Length = 100;
-Chamber_Thickness = 15;
-End_Cap_Grip_Cutout_Diameter = 3;
-```
+| Filename | Description |
+| ----------- | ----------- |
+| v2-body-male-medium-85 | **85 mm** body using **47 x 3.5 mm** O-ring. |
+| v2-body-male-medium-100 | **100 mm** body using **47 x 3.5 mm** O-ring. |
+| v2-body-male-medium-120 | **120 mm** body using **47 x 3.5 mm** O-ring. |
+| v2-end-cap-male-medium | End-cap, with **male** connector. |
+| v2-end-cap-male-medium-extra-spacing | End-cap, with **male** connector. Extra spacing between threads for larger tolerance. |
+| v2-end-cap-female-medium-2-0 | End-cap, with **female** connector. Uses a **21 x 2.0 mm** O-ring. |
+| v2-end-cap-female-medium-2-5 | End-cap, with **female** connector. Uses a **21 x 2.5 mm** O-ring. |
+| v2-end-cap-female-medium-2-0-extra-spacing | End-cap, with **female** connector. Uses a **21 x 2.0 mm** O-ring. Extra spacing between threads for larger tolerance. |
+| v2-end-cap-female-medium-2-5-extra-spacing | End-cap, with **female** connector. Uses a **21 x 2.5 mm** O-ring. Extra spacing between threads for larger tolerance. |
+| v2-o-ring-medium | Large sized printable o-ring (use flexible material, like TPU). |
 
-### Medium:
-```
-Muffler_Length = 85;
-Chamber_Thickness = 12;
-End_Cap_Grip_Cutout_Diameter = 2.5;
-```
+### Small sized muffler
 
-### Small:
-```
-Muffler_Length = 70;
-Chamber_Thickness = 9;
-End_Cap_Grip_Cutout_Diameter = 2.5;
-```
+| Filename | Description |
+| ----------- | ----------- |
+| v2-body-male-small-70 | **70 mm** body using **44 x 3.5 mm** O-ring. |
+| v2-body-male-small-85 | **85 mm** body using **44 x 3.5 mm** O-ring. |
+| v2-body-male-small-100 | **100 mm** body using **44 x 3.5 mm** O-ring. |
+| v2-body-male-small-120 | **120 mm** body using **44 x 3.5 mm** O-ring. |
+| v2-end-cap-male-small | End-cap, with **male** connector. |
+| v2-end-cap-male-small-extra-spacing | End-cap, with **male** connector. Extra spacing between threads for larger tolerance. |
+| v2-end-cap-female-small-2-0 | End-cap, with **female** connector. Uses a **21 x 2.0 mm** O-ring. |
+| v2-end-cap-female-small-2-5 | End-cap, with **female** connector. Uses a **21 x 2.5 mm** O-ring. |
+| v2-end-cap-female-small-2-0-extra-spacing | End-cap, with **female** connector. Uses a **21 x 2.0 mm** O-ring. Extra spacing between threads for larger tolerance. |
+| v2-end-cap-female-small-2-5-extra-spacing | End-cap, with **female** connector. Uses a **21 x 2.5 mm** O-ring. Extra spacing between threads for larger tolerance. |
+| v2-o-ring-small | Large sized printable o-ring (use flexible material, like TPU). |
+
+### Inner mesh tube (lengths are shared by all sizes of mufflers)
+
+| Filename | Description |
+| ----------- | ----------- |
+| v2-inner-mesh-tube-70 | **70 mm** inner mesh tube, open. |
+| v2-inner-mesh-tube-70-corkscrew | **70 mm** inner mesh tube, with a corkscrew wall inside. |
+| v2-inner-mesh-tube-85 | **85 mm** inner mesh tube, open. |
+| v2-inner-mesh-tube-85-corkscrew | **85 mm** inner mesh tube, with a corkscrew wall inside. |
+| v2-inner-mesh-tube-100 | **100 mm** inner mesh tube, open. |
+| v2-inner-mesh-tube-100-corkscrew | **100 mm** inner mesh tube, with a corkscrew wall inside. |
+| v2-inner-mesh-tube-120 | **120 mm** inner mesh tube, open. |
+| v2-inner-mesh-tube-120-corkscrew | **120 mm** inner mesh tube, with a corkscrew wall inside. |
+
+
+## Dependencies / How to build
+The project (v2, subfolder: [v2-build123d](v2-build123d)) is written using [build123d](https://github.com/gumyr/build123d), and [bd_warehouse](https://bd-warehouse.readthedocs.io/) is used to implement ISO Standard Threads. The parametric source file [The Silent Night Customizable CPAP Silencer-Muffler v2.py](v2-build123d/The%20Silent%20Night%20Customizable%20CPAP%20Silencer-Muffler%20v2.py) generates and exports all STL and STEP files when executed.
+
+The original version (v1) was originally written in OpenSCAD. These obsoleted legacy files are still available in the subfolder [v1-openscad](v1-openscad) for archival reasons.
