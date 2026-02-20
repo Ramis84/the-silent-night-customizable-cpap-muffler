@@ -395,11 +395,16 @@ def inner_mesh_tube(muffler_length: MufflerLength,
 
 # %% Printable O-ring
 
+def o_ring_profile():
+    # Intersect a circle and rectangle to cut off bottom of o-ring, for easier print
+    profile = Pos(0,-0.3) * Circle(MUFFLER_O_RING_THICKNESS/2, align=Align.MIN)
+    profile = profile & Rectangle(MUFFLER_O_RING_THICKNESS,
+                                  MUFFLER_O_RING_THICKNESS,
+                                  align=Align.MIN)
+    return profile
+
 def o_ring(muffler_o_ring_inner_diameter: MufflerORingInnerDiameter):
-    profile = Circle(MUFFLER_O_RING_THICKNESS/2, align=(Align.MIN, Align.CENTER))
-    profile = profile & Rectangle(MUFFLER_O_RING_THICKNESS, 
-                                  MUFFLER_O_RING_THICKNESS-0.6, 
-                                  align=(Align.MIN, Align.CENTER))
+    profile = o_ring_profile()
     part = revolve(Plane.XZ * Pos(muffler_o_ring_inner_diameter/2) * profile)
     return part
 
