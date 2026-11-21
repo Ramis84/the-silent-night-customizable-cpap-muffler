@@ -13,7 +13,6 @@ class MufflerLength(IntEnum):
     SHORT = 70
     REGULAR = 85
     LONG = 100
-    EXTRALONG = 120
 '''Length of the outer tube+endcaps, excluding connectors'''
 
 class MufflerORingInnerDiameter(IntEnum):
@@ -75,6 +74,9 @@ END_CAP_INSERT_LENGTH = 10
 
 END_CAP_INSERT_THICKNESS = 2
 '''The thickness of the end cap insert'''
+
+END_CAP_TAPER_INNER_CORNER_RADIUS = 1
+'''The corner radius of the inner taper edge'''
 
 END_CAP_GRIP_CUTOUT_COUNT = 30
 '''The number of cutouts making a grip in the end cap'''
@@ -271,6 +273,13 @@ def end_cap_grip_base_profile(muffler_o_ring_inner_diameter: MufflerORingInnerDi
                     END_CAP_GRIP_THICKNESS+END_CAP_INSERT_LENGTH, 
                     align=Align.MIN)
     )
+    # Small 45* taper on insert edge
+    profile -= (
+        Pos(outer_tube_inner_radius-TOLERANCE-threading_height-threading_extra_spacing,END_CAP_GRIP_THICKNESS+END_CAP_INSERT_LENGTH) 
+        * Polygon((0,0),(-END_CAP_INSERT_THICKNESS,0),(-END_CAP_INSERT_THICKNESS,-END_CAP_INSERT_THICKNESS))
+    )
+    # Rounded taper inner edge
+    profile = fillet(profile.vertices().sort_by(Axis.Y, reverse=True)[1], END_CAP_TAPER_INNER_CORNER_RADIUS)
     # Slot for inner mesh tube
     profile -= (
         Pos(0,END_CAP_BOTTOM_THICKNESS-END_CAP_INNER_TUBE_SLOT_DEPTH) 
@@ -413,12 +422,9 @@ def o_ring(muffler_o_ring_inner_diameter: MufflerORingInnerDiameter):
 body_male_small_70 = body_male(MufflerORingInnerDiameter.SMALL, MufflerLength.SHORT)
 body_male_small_85 = body_male(MufflerORingInnerDiameter.SMALL, MufflerLength.REGULAR)
 body_male_small_100 = body_male(MufflerORingInnerDiameter.SMALL, MufflerLength.LONG)
-body_male_small_120 = body_male(MufflerORingInnerDiameter.SMALL, MufflerLength.EXTRALONG)
 body_male_medium_85 = body_male(MufflerORingInnerDiameter.MEDIUM, MufflerLength.REGULAR)
 body_male_medium_100 = body_male(MufflerORingInnerDiameter.MEDIUM, MufflerLength.LONG)
-body_male_medium_120 = body_male(MufflerORingInnerDiameter.MEDIUM, MufflerLength.EXTRALONG)
 body_male_large_100 = body_male(MufflerORingInnerDiameter.LARGE, MufflerLength.LONG)
-body_male_large_120 = body_male(MufflerORingInnerDiameter.LARGE, MufflerLength.EXTRALONG)
 
 end_cap_male_small = end_cap_male(MufflerORingInnerDiameter.SMALL)
 end_cap_male_small_extra_spacing = end_cap_male(MufflerORingInnerDiameter.SMALL, threading_extra_spacing_enabled=True)
@@ -446,8 +452,6 @@ inner_mesh_tube_85 = inner_mesh_tube(MufflerLength.REGULAR)
 inner_mesh_tube_85_corkscrew = inner_mesh_tube(MufflerLength.REGULAR, include_corkscrew=True)
 inner_mesh_tube_100 = inner_mesh_tube(MufflerLength.LONG)
 inner_mesh_tube_100_corkscrew = inner_mesh_tube(MufflerLength.LONG, include_corkscrew=True)
-inner_mesh_tube_120 = inner_mesh_tube(MufflerLength.EXTRALONG)
-inner_mesh_tube_120_corkscrew = inner_mesh_tube(MufflerLength.EXTRALONG, include_corkscrew=True)
 
 o_ring_small = o_ring(MufflerORingInnerDiameter.SMALL)
 o_ring_medium = o_ring(MufflerORingInnerDiameter.MEDIUM)
@@ -459,12 +463,9 @@ o_ring_large = o_ring(MufflerORingInnerDiameter.LARGE)
 #show(body_male_small_70)
 #show(body_male_small_85)
 #show(body_male_small_100)
-#show(body_male_small_120)
 #show(body_male_medium_85)
 #show(body_male_medium_100)
-#show(body_male_medium_120)
 #show(body_male_large_100)
-#show(body_male_large_120)
 
 #show(end_cap_male_small)
 #show(end_cap_male_small_extra_spacing)
@@ -492,8 +493,6 @@ o_ring_large = o_ring(MufflerORingInnerDiameter.LARGE)
 #show(inner_mesh_tube_85_corkscrew)
 #show(inner_mesh_tube_100)
 #show(inner_mesh_tube_100_corkscrew)
-#show(inner_mesh_tube_120)
-#show(inner_mesh_tube_120_corkscrew)
 
 #show(o_ring_small)
 #show(o_ring_medium)
@@ -504,12 +503,9 @@ o_ring_large = o_ring(MufflerORingInnerDiameter.LARGE)
 export_stl(body_male_small_70, "v2-body-male-small-70.stl")
 export_stl(body_male_small_85, "v2-body-male-small-85.stl")
 export_stl(body_male_small_100, "v2-body-male-small-100.stl")
-export_stl(body_male_small_120, "v2-body-male-small-120.stl")
 export_stl(body_male_medium_85, "v2-body-male-medium-85.stl")
 export_stl(body_male_medium_100, "v2-body-male-medium-100.stl")
-export_stl(body_male_medium_120, "v2-body-male-medium-120.stl")
 export_stl(body_male_large_100, "v2-body-male-large-100.stl")
-export_stl(body_male_large_120, "v2-body-male-large-120.stl")
 
 export_stl(end_cap_male_small, "v2-end-cap-male-small.stl")
 export_stl(end_cap_male_small_extra_spacing, "v2-end-cap-male-small-extra-spacing.stl")
@@ -537,8 +533,6 @@ export_stl(inner_mesh_tube_85, "v2-inner-mesh-tube-85.stl")
 export_stl(inner_mesh_tube_85_corkscrew, "v2-inner-mesh-tube-85-corkscrew.stl")
 export_stl(inner_mesh_tube_100, "v2-inner-mesh-tube-100.stl")
 export_stl(inner_mesh_tube_100_corkscrew, "v2-inner-mesh-tube-100-corkscrew.stl")
-export_stl(inner_mesh_tube_120, "v2-inner-mesh-tube-120.stl")
-export_stl(inner_mesh_tube_120_corkscrew, "v2-inner-mesh-tube-120-corkscrew.stl")
 
 export_stl(o_ring_small, "v2-o-ring-small.stl")
 export_stl(o_ring_medium, "v2-o-ring-medium.stl")
@@ -549,12 +543,9 @@ export_stl(o_ring_large, "v2-o-ring-large.stl")
 export_step(body_male_small_70, "v2-body-male-small-70.step")
 export_step(body_male_small_85, "v2-body-male-small-85.step")
 export_step(body_male_small_100, "v2-body-male-small-100.step")
-export_step(body_male_small_120, "v2-body-male-small-120.step")
 export_step(body_male_medium_85, "v2-body-male-medium-85.step")
 export_step(body_male_medium_100, "v2-body-male-medium-100.step")
-export_step(body_male_medium_120, "v2-body-male-medium-120.step")
 export_step(body_male_large_100, "v2-body-male-large-100.step")
-export_step(body_male_large_120, "v2-body-male-large-120.step")
 
 export_step(end_cap_male_small, "v2-end-cap-male-small.step")
 export_step(end_cap_male_small_extra_spacing, "v2-end-cap-male-small-extra-spacing.step")
@@ -582,8 +573,6 @@ export_step(inner_mesh_tube_85, "v2-inner-mesh-tube-85.step")
 export_step(inner_mesh_tube_85_corkscrew, "v2-inner-mesh-tube-85-corkscrew.step")
 export_step(inner_mesh_tube_100, "v2-inner-mesh-tube-100.step")
 export_step(inner_mesh_tube_100_corkscrew, "v2-inner-mesh-tube-100-corkscrew.step")
-export_step(inner_mesh_tube_120, "v2-inner-mesh-tube-120.step")
-export_step(inner_mesh_tube_120_corkscrew, "v2-inner-mesh-tube-120-corkscrew.step")
 
 export_step(o_ring_small, "v2-o-ring-small.step")
 export_step(o_ring_medium, "v2-o-ring-medium.step")

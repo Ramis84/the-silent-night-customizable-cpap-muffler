@@ -67,7 +67,6 @@ In between uses, I recommend disassembling the muffler to prevent any mold. And 
 | Filename | Description |
 | ----------- | ----------- |
 | v2-body-male-large-100 | **100 mm** body using **50 x 3.5 mm** O-ring. (recommended) |
-| v2-body-male-large-120 | **120 mm** body using **50 x 3.5 mm** O-ring. |
 | v2-end-cap-male-large | End-cap, with **male** connector. |
 | v2-end-cap-male-large-extra-spacing | End-cap, with **male** connector. Extra spacing between threads for larger tolerance. |
 | v2-end-cap-female-large-2-0 | End-cap, with **female** connector. Uses a **21 x 2.0 mm** O-ring. |
@@ -82,7 +81,6 @@ In between uses, I recommend disassembling the muffler to prevent any mold. And 
 | ----------- | ----------- |
 | v2-body-male-medium-85 | **85 mm** body using **47 x 3.5 mm** O-ring. |
 | v2-body-male-medium-100 | **100 mm** body using **47 x 3.5 mm** O-ring. |
-| v2-body-male-medium-120 | **120 mm** body using **47 x 3.5 mm** O-ring. |
 | v2-end-cap-male-medium | End-cap, with **male** connector. |
 | v2-end-cap-male-medium-extra-spacing | End-cap, with **male** connector. Extra spacing between threads for larger tolerance. |
 | v2-end-cap-female-medium-2-0 | End-cap, with **female** connector. Uses a **21 x 2.0 mm** O-ring. |
@@ -98,7 +96,6 @@ In between uses, I recommend disassembling the muffler to prevent any mold. And 
 | v2-body-male-small-70 | **70 mm** body using **44 x 3.5 mm** O-ring. |
 | v2-body-male-small-85 | **85 mm** body using **44 x 3.5 mm** O-ring. |
 | v2-body-male-small-100 | **100 mm** body using **44 x 3.5 mm** O-ring. |
-| v2-body-male-small-120 | **120 mm** body using **44 x 3.5 mm** O-ring. |
 | v2-end-cap-male-small | End-cap, with **male** connector. |
 | v2-end-cap-male-small-extra-spacing | End-cap, with **male** connector. Extra spacing between threads for larger tolerance. |
 | v2-end-cap-female-small-2-0 | End-cap, with **female** connector. Uses a **21 x 2.0 mm** O-ring. |
@@ -117,8 +114,6 @@ In between uses, I recommend disassembling the muffler to prevent any mold. And 
 | v2-inner-mesh-tube-85-corkscrew | **85 mm** inner mesh tube, with a corkscrew wall inside. |
 | v2-inner-mesh-tube-100 | **100 mm** inner mesh tube, open. |
 | v2-inner-mesh-tube-100-corkscrew | **100 mm** inner mesh tube, with a corkscrew wall inside. |
-| v2-inner-mesh-tube-120 | **120 mm** inner mesh tube, open. |
-| v2-inner-mesh-tube-120-corkscrew | **120 mm** inner mesh tube, with a corkscrew wall inside. |
 
 
 ## Dependencies / How to build
